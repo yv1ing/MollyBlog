@@ -101,7 +101,11 @@ func (ma *MApp) parseMarkdowns() error {
 				Hash: tagHash,
 			})
 
-			ma.TaggedPosts = append(ma.TaggedPosts, &post)
+			ma.Tags[tagHash] = tag
+			ma.TagsCount[tag] += 1
+			ma.TaggedPosts[tagHash] = append(ma.TaggedPosts[tagHash], &post)
+
+			model.SortPostsByDate(ma.TaggedPosts[tagHash])
 		}
 
 		for _, category := range post.Categories {
@@ -111,7 +115,11 @@ func (ma *MApp) parseMarkdowns() error {
 				Hash: categoryHash,
 			})
 
-			ma.CategorizedPosts = append(ma.CategorizedPosts, &post)
+			ma.Categories[categoryHash] = category
+			ma.CategoriesCount[category] += 1
+			ma.CategorizedPosts[categoryHash] = append(ma.CategorizedPosts[categoryHash], &post)
+
+			model.SortPostsByDate(ma.CategorizedPosts[categoryHash])
 		}
 
 		// free the raw tag and category slice

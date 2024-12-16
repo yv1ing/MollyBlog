@@ -1,6 +1,7 @@
 package mApp
 
 import (
+	"encoding/json"
 	"html/template"
 	"io"
 	"net/http"
@@ -24,6 +25,7 @@ func (ma *MApp) IndexHandler(ctx *gin.Context) {
 		recentPosts = append(recentPosts, tmpPost)
 	}
 
+	// return some basic information
 	resData := gin.H{
 		"site_info": gin.H{
 			"logo":      ma.Config.MSite.Info.Logo,
@@ -48,6 +50,8 @@ func (ma *MApp) PostHandler(ctx *gin.Context) {
 	var success bool
 	var html string
 	var realPost model.MPost
+
+	// traverse to find the corresponding post, read its HTML file, and inject it into the template
 	for _, post := range ma.Posts {
 		if post.HtmlHash == postHash {
 			file, err := os.OpenFile(post.HtmlPath, os.O_RDONLY, 0644)
@@ -99,6 +103,85 @@ func (ma *MApp) PostHandler(ctx *gin.Context) {
 	}
 
 	ctx.HTML(http.StatusOK, "post.html", resData)
+}
+
+func (ma *MApp) TagHandler(ctx *gin.Context) {
+	tagHash := ctx.Param("hash")
+	tagName := ma.Tags[tagHash]
+
+	// paging logic processing
+	page, _ := strconv.Atoi(ctx.DefaultQuery("page", "1"))
+	size := ma.Config.MSite.Post.Tag.Number
+
+	var prePage, curPage, nxtPage, allPage int
+	allPage = (len(ma.TaggedPosts[tagHash]) + size - 1) / size
+
+	if allPage > 0 {
+		if page <= 0 {
+			curPage = 1
+		} else if page > allPage {
+			curPage = allPage
+		} else {
+			curPage = page
+		}
+	} else {
+		curPage = 0
+	}
+
+	prePage = curPage - 1
+	nxtPage = curPage + 1
+
+	if prePage <= 0 {
+		prePage = curPage
+	}
+
+	if nxtPage > allPage {
+		nxtPage = allPage
+	}
+
+	// generate tagged posts
+	start := (curPage - 1) * size
+	offset := curPage * size
+
+	var taggedPosts []model.MPost
+	var tagList [][]interface{}
+	if start >= 0 {
+		for i := start; i < utils.Min(len(ma.TaggedPosts[tagHash]), offset); i++ {
+			tmpPost := *ma.TaggedPosts[tagHash][i]
+			tmpPost.Date = strings.Split(tmpPost.Date, " ")[0]
+			taggedPosts = append(taggedPosts, tmpPost)
+		}
+
+		for tag, num := range ma.TagsCount {
+			tagList = append(tagList, []interface{}{tag, num})
+		}
+	}
+
+	tagListJson, _ := json.Marshal(tagList)
+	resData := gin.H{
+		"site_info": gin.H{
+			"logo":      ma.Config.MSite.Info.Logo,
+			"title":     ma.Config.MSite.Info.Title,
+			"author":    ma.Config.MSite.Info.Author,
+			"language":  ma.Config.MSite.Info.Language,
+			"copyright": template.HTML(ma.Config.MSite.Info.Copyright),
+		},
+		"menu": ma.Config.MSite.Menu,
+		"page_info": gin.H{
+			"pre_page": prePage,
+			"cur_page": curPage,
+			"nxt_page": nxtPage,
+			"all_page": allPage,
+		},
+		"tagged_post": gin.H{
+			"posts":    taggedPosts,
+			"tag_name": tagName,
+			"tag_hash": tagHash,
+			"tag_list": string(tagListJson),
+		},
+	}
+
+	ctx.HTML(http.StatusOK, "tag.html", resData)
 }
 
 func (ma *MApp) ArchiveHandler(ctx *gin.Context) {
@@ -170,7 +253,8 @@ func (ma *MApp) ArchiveHandler(ctx *gin.Context) {
 
 func (ma *MApp) UpdateBlogHandler(ctx *gin.Context) {
 	var err error
-
+	ma.resetStorage()
+	
 	err = ma.loadMarkdownFiles()
 	if err != nil {
 		_ = ctx.Error(err)
