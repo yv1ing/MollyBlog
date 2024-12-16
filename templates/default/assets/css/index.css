@@ -1,0 +1,20 @@
+.recent-post-title {
+    color: var(--primary-color);
+}
+
+.recent-post-item {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: var(--primary-text-color);
+    list-style: none;
+}
+
+.recent-post-item-wrap {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.recent-post-item-date {
+    color: var(--secondary-text-color);
+}

@@ -1,0 +1,86 @@
+{{ define "index.html" }}
+
+<html lang="{{ .site_info.language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .site_info.title }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ .site_info.logo }}"/>
+    <link rel="stylesheet" href="../assets/css/lib/fontawesome.all.min.css">
+    <link rel="stylesheet" href="../assets/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <script src="../assets/js/lib/jquery.min.js"></script>
+    <script src="../assets/js/lib/bootstrap.min.js"></script>
+    <script src="../assets/js/lib/fontawesome.all.min.js"></script>
+</head>
+<body>
+<div class="root-container">
+    <!-- header -->
+    <div class="container p-3">
+        <div class="row pt-3 pt-md-4 pt-lg-5">
+            <div class="col main-logo">
+                <div class="main-logo-img" style="background-image: url('{{ .site_info.logo }}');"></div>
+                <div class="main-logo-txt">
+                    {{ .site_info.title }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- menu -->
+    <div class="container p-3">
+        <div class="row pt-lg-3">
+            <div class="col mx-auto post-menu">
+                {{ range $i, $v := .menu.Items }}
+                <i class="{{ $v.Icon }} m-icon"></i>
+                <a class="main-menu-link" href="{{ $v.Url }}"> {{ $v.Name }} </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+
+    <!-- body -->
+    <div class="container p-3">
+        <div class="row pt-lg-3">
+            <h4 class="recent-post-title"># {{ .recent_post.title }}</h4>
+            <div class="col-12 col-md-8">
+                <div>
+                    {{ range $i, $v := .recent_post.posts }}
+                    <div class="row recent-post-item">
+                        <div class="col recent-post-item-wrap">
+                            <span class="d-none d-md-inline recent-post-item-date">{{ $v.Date }}&nbsp; | &nbsp;</span>
+                            <span>
+                                <a href="/post/{{ $v.HtmlHash }}">{{ $v.Title }}</a>
+                            </span>
+                        </div>
+                        <div class="col d-none d-lg-block recent-post-item-wrap">
+                            <span style="color: var(--secondary-text-color)">
+                                [
+                                    {{ range $i2, $v2 := $v.TagHashes }}
+                                        <a href="/tag/{{ $v2.Hash }}" style="color: var(--secondary-text-color)">{{ $v2.Name }}</a>
+                                        {{ if lt (add $i2 1) (len $v.TagHashes) }}
+                                            ,
+                                        {{ end }}
+                                    {{ end }}
+                                ]
+                            </span>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- footer -->
+<div class="footer">
+    {{ .site_info.copyright }}
+</div>
+
+</body>
+</html>
+
+{{ end }}

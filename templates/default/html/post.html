@@ -1,0 +1,122 @@
+{{ define "post.html" }}
+
+<html lang="{{ .site_info.language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .site_info.title }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ .site_info.logo }}"/>
+    <link rel="stylesheet" href="../assets/css/lib/fontawesome.all.min.css">
+    <link rel="stylesheet" href="../assets/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/lib/xcode-dark.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/post.css">
+    <script src="../assets/js/lib/jquery.min.js"></script>
+    <script src="../assets/js/lib/bootstrap.min.js"></script>
+    <script src="../assets/js/lib/fontawesome.all.min.js"></script>
+</head>
+<body>
+<div class="root-container">
+
+    <!-- menu -->
+    <div class="container p-3">
+        <div class="row pt-3 pt-md-4 pt-lg-5">
+            <div class="col-12 col-md-9 mx-auto post-menu">
+                {{ range $i, $v := .menu.Items }}
+                <i class="{{ $v.Icon }} m-icon"></i>
+                <a class="main-menu-link" href="{{ $v.Url }}"> {{ $v.Name }} </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+
+    <!-- toc area -->
+    <div class="d-none d-lg-block" id="toc-box-area">
+        <div id="toc-title">
+            <h5>{{ .status.toc_title }}</h5>
+            <hr/>
+        </div>
+        <div id="toc-box"></div>
+        <div id="toc-box-menu">
+            <hr/>
+            {{ range $i, $v := .menu.Items }}
+            <span class="toc-box-menu-item">
+                <i class="{{ $v.Icon }} m-icon" onclick="goto('{{ $v.Url }}')"></i>
+            </span>
+            {{ end }}
+            <span class="toc-box-menu-item" onclick="backToTop()">
+                <i class="fa-solid fa-circle-up"></i>
+            </span>
+        </div>
+    </div>
+
+    <!-- body -->
+    {{ if .status.success }}
+    <div class="container p-3">
+        <div class="row pt-lg-3">
+            <div class="col-12 col-md-9 post-info mx-auto">
+                <h2 class="post-title">{{ .post.title }}</h2>
+                <div>
+                    <span class="post-info-wrap">
+                        <span class="post-info-item">
+                            {{ .post.date }}
+                            &nbsp;
+                        </span>
+                    </span>
+
+                    <span class="post-info-wrap">
+                        {{ $tags := .post.tags }}
+                        {{ if gt (len $tags) 0 }}
+                        <span class="post-info-item">
+                            <i class="fa-solid fa-tags"></i>
+                            {{ range $i, $v := $tags }}
+                            <a href="/tag/{{ $v.Hash }}">{{ $v.Name }}</a>
+                            {{ if lt (add $i 1) (len $tags) }},{{ end }}
+                            {{ end }}
+                            &nbsp;
+                        </span>
+                        {{ end }}
+
+                        {{ $categories := .post.categories }}
+                        {{ if gt (len $categories) 0 }}
+                        <span class="post-info-item">
+                            <i class="fa-solid fa-folder"></i>
+                            {{ range $i, $v := $categories }}
+                            <a href="/category/{{ $v.Hash }}">{{ $v.Name }}</a>
+                            {{ if lt (add $i 1) (len $categories) }},{{ end }}
+                            {{ end }}
+                        </span>
+                        {{ end }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-5">
+            <div class="col-12 col-md-9 post-content mx-auto" id="post-content">
+                {{ .post.content }}
+            </div>
+        </div>
+    </div>
+    {{ end }}
+
+    <!-- post footer -->
+    {{ if .status.success }}
+    <div class="post-footer">
+        {{ .site_info.copyright }}
+    </div>
+    {{ end }}
+
+</div>
+
+<!-- post footer -->
+{{ if not .status.success }}
+<div class="footer">
+    {{ .site_info.copyright }}
+</div>
+{{ end }}
+
+<script src="../assets/js/post.js"></script>
+</body>
+</html>
+
+{{ end }}

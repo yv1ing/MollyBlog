@@ -1,0 +1,94 @@
+pre {
+    padding: 10px;
+    border-radius: 4px;
+    border: var(--secondary-text-color) 1px dashed;
+}
+
+.post-menu {
+    max-width: 1000px;
+}
+
+.post-title {
+    color: var(--primary-color);
+}
+
+.post-info {
+    max-width: 1000px;
+    color: var(--secondary-text-color);
+}
+
+.post-info-wrap {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.post-info-item {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.post-content {
+    line-height: 1.6;
+    max-width: 1000px;
+    color: var(--primary-text-color);
+}
+
+.post-content h1,
+.post-content h2 {
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+}
+
+.post-content h3,
+.post-content h4 {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+.post-content h5,
+.post-content h6 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.post-content img {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.post-content img {
+    max-width: 100%;
+}
+
+.post-footer {
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    color: var(--secondary-text-color);
+}
+
+#toc-box-area {
+    position: fixed;
+    top: 4rem;
+    left: 30px;
+}
+
+#toc-box-menu {
+    margin-top: 20px;
+    display: none;
+    color: var(--primary-color);
+}
+
+.toc-box-menu-item {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#toc-title {
+    color: var(--primary-color);
+}
+
+#toc-box li {
+    list-style: none;
+}
