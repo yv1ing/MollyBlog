@@ -1,0 +1,104 @@
+{{ define "tag.html" }}
+
+<html lang="{{ .site_info.language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .site_info.title }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ .site_info.logo }}"/>
+    <link rel="stylesheet" href="../assets/css/lib/fontawesome.all.min.css">
+    <link rel="stylesheet" href="../assets/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/tag.css">
+    <script src="../assets/js/lib/jquery.min.js"></script>
+    <script src="../assets/js/lib/bootstrap.min.js"></script>
+    <script src="../assets/js/lib/fontawesome.all.min.js"></script>
+    <script src="../assets/js/lib/wordcloud2.js"></script>
+</head>
+<body>
+<div class="root-container">
+    <!-- header -->
+    <div class="container p-3">
+        <div class="row pt-3 pt-md-4 pt-lg-5">
+            <div class="col main-logo">
+                <div class="main-logo-img" style="background-image: url('{{ .site_info.logo }}');"></div>
+                <div class="main-logo-txt">
+                    {{ .site_info.title }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- menu -->
+    <div class="container p-3">
+        <div class="row pt-lg-3">
+            <div class="col mx-auto post-menu">
+                {{ range $i, $v := .menu.Items }}
+                <i class="{{ $v.Icon }} m-icon"></i>
+                <a class="main-menu-link" href="{{ $v.Url }}"> {{ $v.Name }} </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+
+    <!-- body -->
+    <div class="container p-3">
+        <div class="row pt-lg-3">
+            <h4 class="tagged-name"># {{ .tagged_post.tag_name }}</h4>
+            <div class="col-12 col-md-8">
+                <div>
+                    {{ range $i, $v := .tagged_post.posts }}
+                    <div class="row tagged-post-item">
+                        <div class="col tagged-post-item-wrap">
+                            <span class="d-none d-md-inline tagged-post-item-date">{{ $v.Date }}&nbsp; | &nbsp;</span>
+                            <span>
+                                <a href="/post/{{ $v.HtmlHash }}">{{ $v.Title }}</a>
+                            </span>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-3 pt-lg-4">
+            <div class="col-12 col-md-8">
+                <div class="tagged-post-pagination">
+                    <span class="tagged-post-pagination-item">
+                        <a href="/tag/{{ .tagged_post.tag_hash }}?page={{ .page_info.pre_page }}">
+                            <
+                        </a>
+                    </span>
+                    <span class="tagged-post-pagination-item">
+                        {{ .page_info.cur_page }} &nbsp; / &nbsp; {{ .page_info.all_page }}
+                    </span>
+                    <span class="tagged-post-pagination-item">
+                        <a href="/tag/{{ .tagged_post.tag_hash }}?page={{ .page_info.nxt_page }}">
+                            >
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- tag word cloud -->
+<div class="tag-statistics" id="tag-statistics">
+    <div class="tag-word-cloud-canvas" id="tag-word-cloud-canvas"></div>
+</div>
+
+<!-- footer -->
+<div class="footer">
+    {{ .site_info.copyright }}
+</div>
+
+<script>
+    const tagList = "{{ .tagged_post.tag_list }}";
+</script>
+<script src="../assets/js/tag.js"></script>
+</body>
+</html>
+
+{{ end }}

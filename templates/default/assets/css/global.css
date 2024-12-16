@@ -95,3 +95,10 @@ a:hover {
 .main-menu-link {
     margin-right: 10px;
 }
+
+.special-info-area {
+    height: 340px;
+    padding: 20px;
+    border-radius: 4px;
+    border: var(--secondary-text-color) 1px dashed;
+}

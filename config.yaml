@@ -35,3 +35,5 @@ site:
     archive:
       title: Archive
       number: 10
+    tag:
+      number: 10

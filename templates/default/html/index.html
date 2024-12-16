@@ -44,7 +44,7 @@
     <div class="container p-3">
         <div class="row pt-lg-3">
             <h4 class="recent-post-title"># {{ .recent_post.title }}</h4>
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-lg-9">
                 <div>
                     {{ range $i, $v := .recent_post.posts }}
                     <div class="row recent-post-item">
@@ -54,7 +54,7 @@
                                 <a href="/post/{{ $v.HtmlHash }}">{{ $v.Title }}</a>
                             </span>
                         </div>
-                        <div class="col d-none d-lg-block recent-post-item-wrap">
+                        <div class="col d-none d-md-block recent-post-item-wrap">
                             <span style="color: var(--secondary-text-color)">
                                 [
                                     {{ range $i2, $v2 := $v.TagHashes }}
@@ -70,6 +70,27 @@
                     {{ end }}
                 </div>
             </div>
+
+            <!-- special info -->
+            <div class="col-lg-3 d-none d-lg-grid carousel slide special-info-area" id="special-info-area-controls" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#special-info-area-controls" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true" ></button>
+                    <button type="button" data-bs-target="#special-info-area-controls" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#special-info-area-controls" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        1111
+                    </div>
+                    <div class="carousel-item">
+                        2222
+                    </div>
+                    <div class="carousel-item">
+                        3333
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
