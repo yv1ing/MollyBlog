@@ -1,0 +1,37 @@
+# app config #
+host: 0.0.0.0
+port: 8080
+template: templates/default
+
+# site config #
+site:
+  # basic info
+  info:
+    logo: /assets/img/logo.png
+    title: Molly Blog
+    author: yvling
+    language: en
+    copyright: Copyright © 2024 Powered by <a href="https://github.com/yv1ing/MollyBlog">MollyBlog</a>
+
+  # menu config
+  menu:
+    items:
+      - name: Home
+        icon: fa-solid fa-house
+        url: /
+      - name: Archive
+        icon: fa-solid fa-box-archive
+        url: /archive
+      - name: About
+        icon: fa-solid fa-circle-info
+        url: /about
+
+  # post config
+  post:
+    toc_title: Content
+    recent_post:
+      title: Recent Posts
+      number: 10
+    archive:
+      title: Archive
+      number: 10
