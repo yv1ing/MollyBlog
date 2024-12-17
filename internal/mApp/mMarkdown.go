@@ -1,6 +1,8 @@
 package mApp
 
 import (
+	"MollyBlog/internal/storage"
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -15,9 +17,23 @@ import (
 // loadMarkdownFiles load markdown source files
 func (ma *MApp) loadMarkdownFiles() error {
 	var markdownList []model.MFileInfo
+	var err error
 
-	markdownPath := SRC
-	err := filepath.Walk(markdownPath, func(path string, info os.FileInfo, err error) error {
+	markdownPath := ma.Config.Storage.SRC
+
+	switch ma.Config.Storage.Type {
+	case "COS":
+		err = storage.CosLoadMarkdowns(*ma.Config, markdownPath)
+		break
+	default:
+		return errors.New("Unsupported storage type: " + ma.Config.Storage.Type)
+	}
+
+	if err != nil {
+		return err
+	}
+
+	err = filepath.Walk(markdownPath, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
@@ -47,7 +63,7 @@ func (ma *MApp) loadMarkdownFiles() error {
 
 // parseMarkdowns parse markdown files to html
 func (ma *MApp) parseMarkdowns() error {
-	htmlPath := DST
+	htmlPath := ma.Config.Storage.DST
 
 	for index, file := range ma.SrcFiles {
 		// read markdown file

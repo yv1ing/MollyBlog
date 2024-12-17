@@ -9,9 +9,10 @@ import (
 )
 
 type MConfig struct {
-	Host     string `yaml:"host"`
-	Port     int    `yaml:"port"`
-	Template string `yaml:"template"`
+	Host     string   `yaml:"host"`
+	Port     int      `yaml:"port"`
+	Storage  mStorage `yaml:"storage"`
+	Template string   `yaml:"template"`
 
 	MSite mSite `yaml:"site"`
 }
