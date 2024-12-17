@@ -7,6 +7,7 @@ import (
 
 // MPost post metadata
 type MPost struct {
+	Index uint64 `yaml:"index" json:"index"`
 	Title string `yaml:"title" json:"title"`
 	Cover string `yaml:"cover" json:"cover"`
 	Date  string `yaml:"date" json:"date"`

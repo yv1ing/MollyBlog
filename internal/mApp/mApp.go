@@ -10,6 +10,7 @@ import (
 
 	"github.com/88250/lute"
 	"github.com/gin-gonic/gin"
+	"github.com/huichen/wukong/engine"
 )
 
 type MApp struct {
@@ -17,10 +18,12 @@ type MApp struct {
 	Port   int
 	Config *config.MConfig
 
-	lute   *lute.Lute
-	engine *gin.Engine
+	lute     *lute.Lute
+	engine   *gin.Engine
+	searcher *engine.Engine
 
-	Posts []*model.MPost
+	Posts        []*model.MPost
+	IndexedPosts map[uint64]*model.MPost
 
 	Tags             map[string]string
 	TagsCount        map[string]int
@@ -60,6 +63,8 @@ func NewMApp(cfg *config.MConfig) *MApp {
 		Host:   cfg.Host,
 		Port:   cfg.Port,
 		Config: cfg,
+
+		IndexedPosts: make(map[uint64]*model.MPost),
 
 		Tags:      make(map[string]string),
 		TagsCount: make(map[string]int),

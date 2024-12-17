@@ -26,6 +26,12 @@ html, body {
     background-color: var(--background-color);
 }
 
+input:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
 a, a:link, a:visited, a:active {
     text-decoration: none;
     color: var(--primary-text-color);
@@ -101,4 +107,33 @@ a:hover {
     padding: 20px;
     border-radius: 4px;
     border: var(--secondary-text-color) 1px dashed;
+}
+
+.search-wrap {
+    width: 300px;
+    height: 30px;
+    line-height: 30px;
+    display: flex;
+}
+
+.search-input {
+    width: 270px;
+    height: 30px;
+    line-height: 30px;
+    display: inline;
+    border: none;
+    border-radius: 4px;
+}
+
+.search-button {
+    width: 30px;
+    height: 30px;
+    display: inline;
+    border: none;
+    border-radius: 4px;
+    background: var(--secondary-color);
+}
+
+.search-button:hover {
+    background: var(--primary-color);
 }

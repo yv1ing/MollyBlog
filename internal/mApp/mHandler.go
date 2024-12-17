@@ -2,6 +2,8 @@ package mApp
 
 import (
 	"encoding/json"
+	"fmt"
+	"github.com/huichen/wukong/types"
 	"html/template"
 	"io"
 	"net/http"
@@ -174,8 +176,8 @@ func (ma *MApp) TagHandler(ctx *gin.Context) {
 			"all_page": allPage,
 		},
 		"tagged_post": gin.H{
+			"title":    fmt.Sprintf("%s - %s", ma.Config.MSite.Post.Tag.Title, tagName),
 			"posts":    taggedPosts,
-			"tag_name": tagName,
 			"tag_hash": tagHash,
 			"tag_list": string(tagListJson),
 		},
@@ -253,8 +255,8 @@ func (ma *MApp) CategoryHandler(ctx *gin.Context) {
 			"all_page": allPage,
 		},
 		"categorized_post": gin.H{
+			"title":         fmt.Sprintf("%s - %s", ma.Config.MSite.Post.Category.Title, categoryName),
 			"posts":         categorizedPosts,
-			"category_name": categoryName,
 			"category_hash": categoryHash,
 			"tag_list":      string(tagListJson),
 		},
@@ -330,6 +332,75 @@ func (ma *MApp) ArchiveHandler(ctx *gin.Context) {
 	ctx.HTML(http.StatusOK, "archive.html", resData)
 }
 
+func (ma *MApp) SearchHandler(ctx *gin.Context) {
+	keyword := ctx.DefaultQuery("keyword", "")
+	if keyword == "" || len(ma.Posts) <= 1 {
+		ctx.Redirect(http.StatusFound, "/archive")
+		return
+	}
+
+	searchResult := ma.searcher.Search(types.SearchRequest{Text: keyword})
+	searchPosts := searchResult.Docs
+
+	page, _ := strconv.Atoi(ctx.DefaultQuery("page", "1"))
+	size := ma.Config.MSite.Post.Search.Number
+
+	var prePage, curPage, nxtPage, allPage int
+	allPage = (len(searchPosts) + size - 1) / size
+
+	if allPage > 0 {
+		if page <= 0 {
+			curPage = 1
+		} else if page > allPage {
+			curPage = allPage
+		} else {
+			curPage = page
+		}
+	} else {
+		curPage = 0
+	}
+
+	prePage = curPage - 1
+	nxtPage = curPage + 1
+
+	if prePage <= 0 {
+		prePage = curPage
+	}
+
+	if nxtPage > allPage {
+		nxtPage = allPage
+	}
+
+	var resultPosts []model.MPost
+	for _, searchPost := range searchPosts {
+		resultPosts = append(resultPosts, *ma.IndexedPosts[searchPost.DocId])
+	}
+
+	resData := gin.H{
+		"site_info": gin.H{
+			"logo":      ma.Config.MSite.Info.Logo,
+			"title":     ma.Config.MSite.Info.Title,
+			"author":    ma.Config.MSite.Info.Author,
+			"language":  ma.Config.MSite.Info.Language,
+			"copyright": template.HTML(ma.Config.MSite.Info.Copyright),
+		},
+		"menu": ma.Config.MSite.Menu,
+		"page_info": gin.H{
+			"pre_page": prePage,
+			"cur_page": curPage,
+			"nxt_page": nxtPage,
+			"all_page": allPage,
+		},
+		"search_post": gin.H{
+			"title":   fmt.Sprintf("%s - %s", ma.Config.MSite.Post.Search.Title, keyword),
+			"posts":   resultPosts,
+			"keyword": keyword,
+		},
+	}
+
+	ctx.HTML(http.StatusOK, "search.html", resData)
+}
+
 func (ma *MApp) UpdateBlogHandler(ctx *gin.Context) {
 	var err error
 	ma.resetStorage()
@@ -345,6 +416,9 @@ func (ma *MApp) UpdateBlogHandler(ctx *gin.Context) {
 		_ = ctx.Error(err)
 		return
 	}
+
+	// parse post index
+	ma.loadPostIndex()
 
 	ctx.JSON(http.StatusOK, gin.H{"msg": "ok"})
 }
