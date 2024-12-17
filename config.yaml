@@ -1,6 +1,17 @@
 # app config #
 host: 0.0.0.0
 port: 8080
+storage:
+  src: _post/src
+  dst: _post/dst
+  type: COS
+  cos:
+    appid:
+    bucket:
+    region:
+    secret_id:
+    secret_key:
+    save_path:
 template: templates/default
 
 # site config #

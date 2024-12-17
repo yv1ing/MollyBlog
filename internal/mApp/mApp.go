@@ -34,9 +34,9 @@ type MApp struct {
 	SrcFiles []model.MFileInfo
 }
 
-const (
-	SRC = "_post/src" // source markdown files
-	DST = "_post/dst" // destination html files
+var (
+	SRC = config.MConfigInstance.Storage.SRC // source markdown files
+	DST = config.MConfigInstance.Storage.DST // destination html files
 )
 
 func init() {
