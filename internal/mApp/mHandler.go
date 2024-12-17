@@ -3,9 +3,9 @@ package mApp
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/huichen/wukong/types"
 	"html/template"
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -15,6 +15,7 @@ import (
 	"MollyBlog/utils"
 
 	"github.com/gin-gonic/gin"
+	"github.com/huichen/wukong/types"
 )
 
 func (ma *MApp) IndexHandler(ctx *gin.Context) {
@@ -407,12 +408,14 @@ func (ma *MApp) UpdateBlogHandler(ctx *gin.Context) {
 
 	err = ma.loadMarkdownFiles()
 	if err != nil {
+		log.Printf("load markdown files failed, err:%v\n", err)
 		_ = ctx.Error(err)
 		return
 	}
 
 	err = ma.parseMarkdowns()
 	if err != nil {
+		log.Printf("parse markdown files failed, err:%v\n", err)
 		_ = ctx.Error(err)
 		return
 	}
@@ -420,5 +423,6 @@ func (ma *MApp) UpdateBlogHandler(ctx *gin.Context) {
 	// parse post index
 	ma.loadPostIndex()
 
+	log.Println("update blog success")
 	ctx.JSON(http.StatusOK, gin.H{"msg": "ok"})
 }
