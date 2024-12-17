@@ -1,12 +1,11 @@
 package mApp
 
 import (
+	"MollyBlog/config"
+	"MollyBlog/internal/model"
 	"fmt"
 	"html/template"
 	"log"
-
-	"MollyBlog/config"
-	"MollyBlog/internal/model"
 
 	"github.com/88250/lute"
 	"github.com/gin-gonic/gin"
@@ -40,11 +39,19 @@ const (
 	DST = "_post/dst" // destination html files
 )
 
+func init() {
+	log.SetPrefix("[MollyBlog] ")
+	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
+
+	gin.SetMode(gin.ReleaseMode)
+}
+
 func (ma *MApp) Run() {
 	ma.loadRoutes()
 	ma.loadTemplates()
 
 	addr := fmt.Sprintf("%s:%d", ma.Host, ma.Port)
+	log.Printf("mApp listening on %s\n", addr)
 	err := ma.engine.Run(addr)
 	if err != nil {
 		log.Fatal(err)
@@ -52,8 +59,8 @@ func (ma *MApp) Run() {
 }
 
 func NewMApp(cfg *config.MConfig) *MApp {
-	engine := gin.Default()
-	engine.SetFuncMap(template.FuncMap{
+	_engine := gin.Default()
+	_engine.SetFuncMap(template.FuncMap{
 		"add": func(a, b int) int {
 			return a + b
 		},
@@ -76,7 +83,7 @@ func NewMApp(cfg *config.MConfig) *MApp {
 		CategorizedPosts: make(map[string][]*model.MPost),
 
 		lute:   lute.New(),
-		engine: engine,
+		engine: _engine,
 	}
 }
 
