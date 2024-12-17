@@ -1,0 +1,25 @@
+.categorized-post-title {
+    color: var(--primary-color);
+}
+
+.categorized-post-item {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: var(--primary-text-color);
+    list-style: none;
+}
+
+.categorized-post-item-wrap {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.categorized-post-item-date {
+    color: var(--secondary-text-color);
+}
+
+.categorized-post-pagination-item {
+    color: var(--secondary-text-color);
+    padding-right: 10px;
+}

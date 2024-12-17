@@ -184,6 +184,85 @@ func (ma *MApp) TagHandler(ctx *gin.Context) {
 	ctx.HTML(http.StatusOK, "tag.html", resData)
 }
 
+func (ma *MApp) CategoryHandler(ctx *gin.Context) {
+	categoryHash := ctx.Param("hash")
+	categoryName := ma.Tags[categoryHash]
+
+	// paging logic processing
+	page, _ := strconv.Atoi(ctx.DefaultQuery("page", "1"))
+	size := ma.Config.MSite.Post.Tag.Number
+
+	var prePage, curPage, nxtPage, allPage int
+	allPage = (len(ma.CategorizedPosts[categoryHash]) + size - 1) / size
+
+	if allPage > 0 {
+		if page <= 0 {
+			curPage = 1
+		} else if page > allPage {
+			curPage = allPage
+		} else {
+			curPage = page
+		}
+	} else {
+		curPage = 0
+	}
+
+	prePage = curPage - 1
+	nxtPage = curPage + 1
+
+	if prePage <= 0 {
+		prePage = curPage
+	}
+
+	if nxtPage > allPage {
+		nxtPage = allPage
+	}
+
+	// generate categorized posts
+	start := (curPage - 1) * size
+	offset := curPage * size
+
+	var categorizedPosts []model.MPost
+	var tagList [][]interface{}
+	if start >= 0 {
+		for i := start; i < utils.Min(len(ma.TaggedPosts[categoryHash]), offset); i++ {
+			tmpPost := *ma.TaggedPosts[categoryHash][i]
+			tmpPost.Date = strings.Split(tmpPost.Date, " ")[0]
+			categorizedPosts = append(categorizedPosts, tmpPost)
+		}
+
+		for tag, num := range ma.TagsCount {
+			tagList = append(tagList, []interface{}{tag, num})
+		}
+	}
+
+	tagListJson, _ := json.Marshal(tagList)
+	resData := gin.H{
+		"site_info": gin.H{
+			"logo":      ma.Config.MSite.Info.Logo,
+			"title":     ma.Config.MSite.Info.Title,
+			"author":    ma.Config.MSite.Info.Author,
+			"language":  ma.Config.MSite.Info.Language,
+			"copyright": template.HTML(ma.Config.MSite.Info.Copyright),
+		},
+		"menu": ma.Config.MSite.Menu,
+		"page_info": gin.H{
+			"pre_page": prePage,
+			"cur_page": curPage,
+			"nxt_page": nxtPage,
+			"all_page": allPage,
+		},
+		"categorized_post": gin.H{
+			"posts":         categorizedPosts,
+			"category_name": categoryName,
+			"category_hash": categoryHash,
+			"tag_list":      string(tagListJson),
+		},
+	}
+
+	ctx.HTML(http.StatusOK, "category.html", resData)
+}
+
 func (ma *MApp) ArchiveHandler(ctx *gin.Context) {
 	page, _ := strconv.Atoi(ctx.DefaultQuery("page", "1"))
 	size := ma.Config.MSite.Post.Archive.Number
@@ -214,7 +293,7 @@ func (ma *MApp) ArchiveHandler(ctx *gin.Context) {
 		nxtPage = allPage
 	}
 
-	// generate recent posts
+	// generate history posts
 	start := (curPage - 1) * size
 	offset := curPage * size
 
@@ -254,7 +333,7 @@ func (ma *MApp) ArchiveHandler(ctx *gin.Context) {
 func (ma *MApp) UpdateBlogHandler(ctx *gin.Context) {
 	var err error
 	ma.resetStorage()
-	
+
 	err = ma.loadMarkdownFiles()
 	if err != nil {
 		_ = ctx.Error(err)
