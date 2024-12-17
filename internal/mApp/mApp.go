@@ -1,11 +1,13 @@
 package mApp
 
 import (
-	"MollyBlog/config"
-	"MollyBlog/internal/model"
 	"fmt"
 	"html/template"
 	"log"
+	"os"
+
+	"MollyBlog/config"
+	"MollyBlog/internal/model"
 
 	"github.com/88250/lute"
 	"github.com/gin-gonic/gin"
@@ -88,7 +90,7 @@ func NewMApp(cfg *config.MConfig) *MApp {
 }
 
 // resetStorage before each update, delete the cache
-func (ma *MApp) resetStorage() {
+func (ma *MApp) resetStorage() error {
 	ma.Posts = nil
 	ma.Tags = nil
 	ma.Categories = nil
@@ -103,4 +105,42 @@ func (ma *MApp) resetStorage() {
 	ma.CategoriesCount = make(map[string]int)
 	ma.TaggedPosts = make(map[string][]*model.MPost)
 	ma.CategorizedPosts = make(map[string][]*model.MPost)
+
+	if ma.searcher != nil {
+		ma.searcher.Close()
+	}
+
+	var err error
+	err = os.RemoveAll(ma.Config.Storage.SRC)
+	if err != nil {
+		return err
+	}
+
+	_, err = os.Stat(ma.Config.Storage.SRC)
+	if os.IsNotExist(err) {
+		err = os.MkdirAll(ma.Config.Storage.SRC, os.ModePerm)
+		if err != nil {
+			return err
+		}
+	}
+
+	err = os.RemoveAll(ma.Config.Storage.DST)
+	if err != nil {
+		return err
+	}
+
+	_, err = os.Stat(ma.Config.Storage.DST)
+	if os.IsNotExist(err) {
+		err = os.MkdirAll(ma.Config.Storage.DST, os.ModePerm)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	err = os.RemoveAll(ma.Config.CachePath)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

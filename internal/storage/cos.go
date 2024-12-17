@@ -52,8 +52,7 @@ func CosLoadMarkdowns(config config.MConfig, localDir string) error {
 	marker := ""
 	prefix := config.Storage.COS.SavePath
 	encodingType := "url"
-
-	log.Println("start load markdown files")
+	
 	isTruncated := true
 	for isTruncated {
 		opt := &cos.BucketGetOptions{
@@ -73,7 +72,7 @@ func CosLoadMarkdowns(config config.MConfig, localDir string) error {
 			if _, err := os.Stat(path.Dir(localFile)); err != nil && os.IsNotExist(err) {
 				_ = os.MkdirAll(path.Dir(localFile), os.ModePerm)
 			}
-			
+
 			if strings.HasSuffix(localFile, "/") {
 				continue
 			}
