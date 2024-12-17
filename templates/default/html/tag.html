@@ -44,7 +44,7 @@
     <!-- body -->
     <div class="container p-3">
         <div class="row pt-lg-3">
-            <h4 class="tagged-name"># {{ .tagged_post.tag_name }}</h4>
+            <h4 class="tagged-post-title"># {{ .tagged_post.title }}</h4>
             <div class="col-12 col-md-8">
                 <div>
                     {{ range $i, $v := .tagged_post.posts }}

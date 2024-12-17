@@ -38,6 +38,15 @@
                 {{ end }}
             </div>
         </div>
+        <div class="row pt-4">
+            <div class="search-wrap">
+                <input class="search-input" id="index-search-input" type="text">
+                &nbsp;
+                <button class="search-button" onclick="search()">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- body -->
@@ -86,6 +95,7 @@
     {{ .site_info.copyright }}
 </div>
 
+<script src="../assets/js/index.js"></script>
 </body>
 </html>
 

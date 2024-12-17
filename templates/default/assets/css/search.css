@@ -1,0 +1,25 @@
+.search-post-title {
+    color: var(--primary-color);
+}
+
+.search-post-item {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: var(--primary-text-color);
+    list-style: none;
+}
+
+.search-post-item-wrap {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.search-post-item-date {
+    color: var(--secondary-text-color);
+}
+
+.search-post-pagination-item {
+    color: var(--secondary-text-color);
+    padding-right: 10px;
+}

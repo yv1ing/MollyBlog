@@ -43,6 +43,10 @@ function goto(path) {
     window.location.href = path;
 }
 
+function back() {
+    window.history.back();
+}
+
 function backToTop() {
     window.scrollTo({
         top: 0,

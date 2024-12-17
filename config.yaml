@@ -29,11 +29,20 @@ site:
   # post config
   post:
     toc_title: Content
+
+    # title and number of post displayed per page
     recent_post:
       title: Recent Posts
       number: 10
     archive:
       title: Archive
       number: 10
+    search:
+      title: Search
+      number: 10
+    category:
+      title: Category
+      number: 10
     tag:
+      title: Tag
       number: 10

@@ -49,7 +49,7 @@ func (ma *MApp) loadMarkdownFiles() error {
 func (ma *MApp) parseMarkdowns() error {
 	htmlPath := DST
 
-	for _, file := range ma.SrcFiles {
+	for index, file := range ma.SrcFiles {
 		// read markdown file
 		_mdFile, err := os.Open(file.Path)
 		if err != nil {
@@ -126,7 +126,11 @@ func (ma *MApp) parseMarkdowns() error {
 		post.Tags = nil
 		post.Categories = nil
 
+		// set post index
+		post.Index = uint64(index)
+
 		ma.Posts = append(ma.Posts, &post)
+		ma.IndexedPosts[post.Index] = &post
 	}
 
 	// sort Posts by date
