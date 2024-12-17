@@ -9,17 +9,20 @@ import (
 )
 
 func init() {
-	_, err := os.Stat(mApp.SRC)
+	src := config.MConfigInstance.Storage.SRC
+	dst := config.MConfigInstance.Storage.DST
+
+	_, err := os.Stat(src)
 	if os.IsNotExist(err) {
-		err = os.MkdirAll(mApp.SRC, os.ModePerm)
+		err = os.MkdirAll(src, os.ModePerm)
 		if err != nil {
 			log.Fatal(err)
 		}
 	}
 
-	_, err = os.Stat(mApp.DST)
+	_, err = os.Stat(dst)
 	if os.IsNotExist(err) {
-		err = os.MkdirAll(mApp.DST, os.ModePerm)
+		err = os.MkdirAll(dst, os.ModePerm)
 		if err != nil {
 			log.Fatal(err)
 		}

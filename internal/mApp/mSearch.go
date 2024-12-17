@@ -1,6 +1,7 @@
 package mApp
 
 import (
+	"fmt"
 	"io"
 	"os"
 
@@ -9,13 +10,15 @@ import (
 )
 
 func (ma *MApp) loadPostIndex() {
+	cachePath := fmt.Sprintf("%s/persistent", ma.Config.CachePath)
+	ma.searcher = nil
 	ma.searcher = &engine.Engine{}
 
 	ma.searcher.Init(types.EngineInitOptions{
 		UsePersistentStorage:    true,
-		PersistentStorageFolder: "tmp",
-		StopTokenFile:           "data/stop_tokens.txt",
-		SegmenterDictionaries:   "data/dictionary.txt",
+		PersistentStorageFolder: cachePath,
+		StopTokenFile:           "data/search/stop_tokens.txt",
+		SegmenterDictionaries:   "data/search/dictionary.txt",
 		IndexerInitOptions: &types.IndexerInitOptions{
 			IndexType: types.LocationsIndex,
 		},
@@ -26,6 +29,7 @@ func (ma *MApp) loadPostIndex() {
 		postData, _ := io.ReadAll(postFile)
 
 		ma.searcher.IndexDocument(post.Index, types.DocumentIndexData{Content: string(postData)}, false)
+		_ = postFile.Close()
 	}
 
 	ma.searcher.FlushIndex()

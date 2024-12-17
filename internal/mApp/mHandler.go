@@ -404,18 +404,23 @@ func (ma *MApp) SearchHandler(ctx *gin.Context) {
 
 func (ma *MApp) UpdateBlogHandler(ctx *gin.Context) {
 	var err error
-	ma.resetStorage()
+	err = ma.resetStorage()
+	if err != nil {
+		log.Printf("reset storage error: %v\n", err)
+		_ = ctx.Error(err)
+		return
+	}
 
 	err = ma.loadMarkdownFiles()
 	if err != nil {
-		log.Printf("load markdown files failed, err:%v\n", err)
+		log.Printf("load markdown files failed, err: %v\n", err)
 		_ = ctx.Error(err)
 		return
 	}
 
 	err = ma.parseMarkdowns()
 	if err != nil {
-		log.Printf("parse markdown files failed, err:%v\n", err)
+		log.Printf("parse markdown files failed, err: %v\n", err)
 		_ = ctx.Error(err)
 		return
 	}

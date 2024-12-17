@@ -1,6 +1,8 @@
 package mApp
 
 func (ma *MApp) loadRoutes() {
+	ma.engine.Use(ma.AuthMiddleware)
+
 	ma.engine.GET("/", ma.IndexHandler)
 	ma.engine.GET("/search", ma.SearchHandler)
 	ma.engine.GET("/archive", ma.ArchiveHandler)
@@ -8,5 +10,6 @@ func (ma *MApp) loadRoutes() {
 	ma.engine.GET("/tag/:hash", ma.TagHandler)
 	ma.engine.GET("/category/:hash", ma.CategoryHandler)
 
-	ma.engine.PUT("/update", ma.UpdateBlogHandler)
+	// update's endpoint
+	ma.engine.POST(ma.Config.UpdateEndpoint, ma.UpdateBlogHandler)
 }

@@ -1,6 +1,13 @@
 # app config #
 host: 0.0.0.0
 port: 8080
+cache_path: tmp
+
+# use this secret to update your posts
+update_endpoint: /update
+update_secret: 123456
+
+# configure object storage to automatically obtain article updates
 storage:
   src: _post/src
   dst: _post/dst
@@ -12,6 +19,8 @@ storage:
     secret_id:
     secret_key:
     save_path:
+
+# website template directory
 template: templates/default
 
 # site config #
