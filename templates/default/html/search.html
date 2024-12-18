@@ -86,7 +86,7 @@
             <div class="col-12 col-md-8">
                 <div class="search-post-pagination">
                     <span class="search-post-pagination-item">
-                        <a href="/search?page={{ .page_info.pre_page }}">
+                        <a href="/search?keyword={{ .search_post.keyword }}&page={{ .page_info.pre_page }}">
                             <
                         </a>
                     </span>
@@ -94,7 +94,7 @@
                         {{ .page_info.cur_page }} &nbsp; / &nbsp; {{ .page_info.all_page }}
                     </span>
                     <span class="search-post-pagination-item">
-                        <a href="/search?page={{ .page_info.nxt_page }}">
+                        <a href="/search?keyword={{ .search_post.keyword }}&page={{ .page_info.nxt_page }}">
                             >
                         </a>
                     </span>
