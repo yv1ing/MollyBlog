@@ -372,9 +372,15 @@ func (ma *MApp) SearchHandler(ctx *gin.Context) {
 		nxtPage = allPage
 	}
 
+	// generate search posts
+	start := (curPage - 1) * size
+	offset := curPage * size
+
 	var resultPosts []model.MPost
-	for _, searchPost := range searchPosts {
-		resultPosts = append(resultPosts, *ma.IndexedPosts[searchPost.DocId])
+	if len(searchPosts) > 0 {
+		for i := start; i < utils.Min(len(searchPosts), offset); i++ {
+			resultPosts = append(resultPosts, *ma.IndexedPosts[searchPosts[i].DocId])
+		}
 	}
 
 	resData := gin.H{
