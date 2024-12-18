@@ -53,7 +53,7 @@ func (ma *MApp) Run() {
 	ma.loadTemplates()
 
 	addr := fmt.Sprintf("%s:%d", ma.Host, ma.Port)
-	log.Printf("mApp listening on %s\n", addr)
+	log.Printf("app listening on %s\n", addr)
 	err := ma.engine.Run(addr)
 	if err != nil {
 		log.Fatal(err)
