@@ -21,16 +21,18 @@ func (ma *MApp) loadMarkdownFiles() error {
 
 	markdownPath := ma.Config.Storage.SRC
 
-	switch ma.Config.Storage.Type {
-	case "COS":
-		err = storage.CosLoadMarkdowns(*ma.Config, markdownPath)
-		break
-	default:
-		return errors.New("Unsupported storage type: " + ma.Config.Storage.Type)
-	}
+	if ma.Config.Storage.AutoPull {
+		switch ma.Config.Storage.Type {
+		case "COS":
+			err = storage.CosLoadMarkdowns(*ma.Config, markdownPath)
+			break
+		default:
+			return errors.New("Unsupported storage type: " + ma.Config.Storage.Type)
+		}
 
-	if err != nil {
-		return err
+		if err != nil {
+			return err
+		}
 	}
 
 	err = filepath.Walk(markdownPath, func(path string, info os.FileInfo, err error) error {

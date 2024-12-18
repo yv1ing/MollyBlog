@@ -1,10 +1,11 @@
 package config
 
 type mStorage struct {
-	SRC  string    `yaml:"src"`
-	DST  string    `yaml:"dst"`
-	Type string    `yaml:"type"`
-	COS  cosConfig `yaml:"cos"`
+	SRC      string    `yaml:"src"`
+	DST      string    `yaml:"dst"`
+	Type     string    `yaml:"type"`
+	COS      cosConfig `yaml:"cos"`
+	AutoPull bool      `yaml:"auto_pull"`
 }
 
 type cosConfig struct {

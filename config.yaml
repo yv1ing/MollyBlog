@@ -12,6 +12,7 @@ storage:
   src: _post/src
   dst: _post/dst
   type: COS
+  auto_pull: true
   cos:
     appid:
     bucket:
