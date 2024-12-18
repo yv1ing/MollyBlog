@@ -28,14 +28,23 @@ func (ma *MApp) IndexHandler(ctx *gin.Context) {
 		recentPosts = append(recentPosts, tmpPost)
 	}
 
+	// generate motto
+	var mottoHtml string
+	mottoHtml = "<script>let motto = ['"
+	for _, motto := range ma.Config.MSite.Info.Motto {
+		mottoHtml += fmt.Sprintf("%s<br>", motto)
+	}
+	mottoHtml += "'];</script>"
+
 	// return some basic information
 	resData := gin.H{
 		"site_info": gin.H{
-			"logo":      ma.Config.MSite.Info.Logo,
-			"title":     ma.Config.MSite.Info.Title,
-			"author":    ma.Config.MSite.Info.Author,
-			"language":  ma.Config.MSite.Info.Language,
-			"copyright": template.HTML(ma.Config.MSite.Info.Copyright),
+			"logo":       ma.Config.MSite.Info.Logo,
+			"title":      ma.Config.MSite.Info.Title,
+			"author":     ma.Config.MSite.Info.Author,
+			"language":   ma.Config.MSite.Info.Language,
+			"copyright":  template.HTML(ma.Config.MSite.Info.Copyright),
+			"motto_html": template.HTML(mottoHtml),
 		},
 		"menu": ma.Config.MSite.Menu,
 		"recent_post": gin.H{
@@ -309,13 +318,22 @@ func (ma *MApp) ArchiveHandler(ctx *gin.Context) {
 		}
 	}
 
+	// generate motto
+	var mottoHtml string
+	mottoHtml = "<script>let motto = ['"
+	for _, motto := range ma.Config.MSite.Info.Motto {
+		mottoHtml += fmt.Sprintf("%s<br>", motto)
+	}
+	mottoHtml += "'];</script>"
+
 	resData := gin.H{
 		"site_info": gin.H{
-			"logo":      ma.Config.MSite.Info.Logo,
-			"title":     ma.Config.MSite.Info.Title,
-			"author":    ma.Config.MSite.Info.Author,
-			"language":  ma.Config.MSite.Info.Language,
-			"copyright": template.HTML(ma.Config.MSite.Info.Copyright),
+			"logo":       ma.Config.MSite.Info.Logo,
+			"title":      ma.Config.MSite.Info.Title,
+			"author":     ma.Config.MSite.Info.Author,
+			"language":   ma.Config.MSite.Info.Language,
+			"copyright":  template.HTML(ma.Config.MSite.Info.Copyright),
+			"motto_html": template.HTML(mottoHtml),
 		},
 		"menu": ma.Config.MSite.Menu,
 		"page_info": gin.H{

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../assets/css/lib/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/archive.css">
+    <script src="../assets/js/lib/typed.umd.js"></script>
     <script src="../assets/js/lib/jquery.min.js"></script>
     <script src="../assets/js/lib/bootstrap.min.js"></script>
     <script src="../assets/js/lib/fontawesome.all.min.js"></script>
@@ -82,7 +83,20 @@
             </div>
 
             <!-- special info -->
-             <div class="col-lg-3 d-none d-lg-grid carousel slide special-info-area"></div>
+            <!-- motto -->
+            <div class="col-lg-3 d-none d-lg-grid carousel slide special-info-area">
+                <div id="archive-motto-container"></div>
+            </div>
+            {{ .site_info.motto_html }}
+            <script>
+                const options = {
+                    strings: motto,
+                    typeSpeed: 30,
+                    startDelay: 100,
+                    showCursor: false,
+                };
+                new Typed("#archive-motto-container", options);
+            </script>
 
         </div>
 

@@ -10,8 +10,8 @@
 }
 
 @font-face {
-    font-family: 'jetbrains-mono-medium';
-    src: url('../../assets/css/webfonts/jetbrains-mono-medium.woff2') format('woff2');
+    font-family: 'miseki-bitmap';
+    src: url('../../assets/css/webfonts/miseki-bitmap.ttf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
@@ -60,8 +60,7 @@ a:hover {
 }
 
 ::-webkit-scrollbar {
-    width: 7px;
-    height: 7px;
+    width: 3px;
 }
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
@@ -106,6 +105,7 @@ a:hover {
     height: 340px;
     padding: 20px;
     border-radius: 4px;
+    font-family: miseki-bitmap, serif;
     border: var(--secondary-text-color) 1px dashed;
 }
 
