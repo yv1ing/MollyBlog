@@ -16,13 +16,20 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'meslo-lg-s-regular-for-powerline';
+    src: url('../../assets/css/webfonts/meslo-lg-s-regular-for-powerline.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
 
-    /*font-family: jetbrains-mono-medium, serif;*/
+    font-family: meslo-lg-s-regular-for-powerline, serif;
     background-color: var(--background-color);
 }
 
