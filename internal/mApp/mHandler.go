@@ -235,20 +235,20 @@ func (ma *MApp) CategoryHandler(ctx *gin.Context) {
 	offset := curPage * size
 
 	var categorizedPosts []model.MPost
-	var tagList [][]interface{}
+	//var tagList [][]interface{}
 	if start >= 0 {
-		for i := start; i < utils.Min(len(ma.TaggedPosts[categoryHash]), offset); i++ {
-			tmpPost := *ma.TaggedPosts[categoryHash][i]
+		for i := start; i < utils.Min(len(ma.CategorizedPosts[categoryHash]), offset); i++ {
+			tmpPost := *ma.CategorizedPosts[categoryHash][i]
 			tmpPost.Date = strings.Split(tmpPost.Date, " ")[0]
 			categorizedPosts = append(categorizedPosts, tmpPost)
 		}
 
-		for tag, num := range ma.TagsCount {
-			tagList = append(tagList, []interface{}{tag, num})
-		}
+		//for tag, num := range ma.TagsCount {
+		//	tagList = append(tagList, []interface{}{tag, num})
+		//}
 	}
 
-	tagListJson, _ := json.Marshal(tagList)
+	//tagListJson, _ := json.Marshal(tagList)
 	resData := gin.H{
 		"site_info": gin.H{
 			"logo":      ma.Config.MSite.Info.Logo,
@@ -268,7 +268,7 @@ func (ma *MApp) CategoryHandler(ctx *gin.Context) {
 			"title":         fmt.Sprintf("%s - %s", ma.Config.MSite.Post.Category.Title, categoryName),
 			"posts":         categorizedPosts,
 			"category_hash": categoryHash,
-			"tag_list":      string(tagListJson),
+			//"tag_list":      string(tagListJson),
 		},
 	}
 
