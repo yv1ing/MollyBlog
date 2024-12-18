@@ -29,6 +29,14 @@ site:
   # basic info
   info:
     logo: /assets/img/logo.png
+    motto:
+      - I hope I can make it out of here.
+      - I hope that I can still feel the sun on my face, and hear the sound of the rain.
+      - I hope that I can walk with my head held high again, free, and one day be able to say,
+      - I’m not just living,
+      - I’m truly alive.
+      - <br>
+      - —— Andy Dufresne
     title: Molly Blog
     author: yvling
     language: en

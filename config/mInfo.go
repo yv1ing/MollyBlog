@@ -6,4 +6,6 @@ type mInfo struct {
 	Author    string `yaml:"author"`
 	Language  string `yaml:"language"`
 	Copyright string `yaml:"copyright"`
+
+	Motto []string `yaml:"motto"`
 }

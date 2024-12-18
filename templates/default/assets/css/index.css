@@ -18,3 +18,7 @@
 .recent-post-item-date {
     color: var(--secondary-text-color);
 }
+
+#index-motto-container {
+    color: var(--secondary-text-color);
+}
