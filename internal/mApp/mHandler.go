@@ -457,6 +457,9 @@ func (ma *MApp) UpdateBlogHandler(ctx *gin.Context) {
 	// parse post index
 	ma.loadPostIndex()
 
+	// parse rss
+	ma.RSS = ma.generateRSS()
+
 	log.Println("update blog success")
 	ctx.JSON(http.StatusOK, gin.H{"msg": "ok"})
 }
@@ -484,4 +487,12 @@ func (ma *MApp) AboutHandler(ctx *gin.Context) {
 	}
 
 	ctx.HTML(http.StatusOK, "about.html", resData)
+}
+
+func (ma *MApp) RSSHandler(ctx *gin.Context) {
+	if ma.RSS != "" {
+		ctx.String(http.StatusOK, ma.RSS)
+	} else {
+		ctx.String(http.StatusNotFound, "RSS Not Found")
+	}
 }
