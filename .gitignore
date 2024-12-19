@@ -4,6 +4,7 @@
 # Work dir and files
 *.log
 .idea
+dist
 tmp
 
 # Binaries for programs and plugins
