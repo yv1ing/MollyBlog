@@ -9,10 +9,10 @@ update_secret: 123456
 
 # configure object storage to automatically obtain article updates
 storage:
-  src: _post/src
-  dst: _post/dst
-  type: COS
+  src: _blog/src/post
+  dst: _blog/dst/post
   auto_pull: true
+  type: COS
   cos:
     appid:
     bucket:
@@ -75,3 +75,10 @@ site:
     tag:
       title: Tag
       number: 10
+
+  # about config
+  about:
+    title: About me
+    src: _blog/src/about
+    dst: _blog/dst/about
+    filename: index

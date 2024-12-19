@@ -429,6 +429,7 @@ func (ma *MApp) UpdateBlogHandler(ctx *gin.Context) {
 		return
 	}
 
+	// load posts
 	err = ma.loadMarkdownFiles()
 	if err != nil {
 		log.Printf("load markdown files failed, err: %v\n", err)
@@ -443,9 +444,44 @@ func (ma *MApp) UpdateBlogHandler(ctx *gin.Context) {
 		return
 	}
 
+	// load about me
+	aboutSrc := fmt.Sprintf("%s/%s.md", ma.Config.MSite.About.SRC, ma.Config.MSite.About.Filename)
+	aboutDst := fmt.Sprintf("%s/%s.html", ma.Config.MSite.About.DST, ma.Config.MSite.About.Filename)
+	err = ma.parseSingleMarkdown(aboutSrc, aboutDst)
+	if err != nil {
+		log.Printf("parse about me failed, err: %v\n", err)
+		_ = ctx.Error(err)
+		return
+	}
+
 	// parse post index
 	ma.loadPostIndex()
 
 	log.Println("update blog success")
 	ctx.JSON(http.StatusOK, gin.H{"msg": "ok"})
+}
+
+func (ma *MApp) AboutHandler(ctx *gin.Context) {
+	dstFile := fmt.Sprintf("%s/%s.html", ma.Config.MSite.About.DST, ma.Config.MSite.About.Filename)
+	aboutFile, _ := os.OpenFile(dstFile, os.O_RDONLY, 0666)
+	aboutBytes, _ := io.ReadAll(aboutFile)
+
+	// return some basic information
+	resData := gin.H{
+		"site_info": gin.H{
+			"logo":      ma.Config.MSite.Info.Logo,
+			"title":     ma.Config.MSite.Info.Title,
+			"author":    ma.Config.MSite.Info.Author,
+			"language":  ma.Config.MSite.Info.Language,
+			"copyright": template.HTML(ma.Config.MSite.Info.Copyright),
+		},
+		"menu": ma.Config.MSite.Menu,
+		"about": gin.H{
+			"title":   ma.Config.MSite.About.Title,
+			"content": template.HTML(aboutBytes),
+			"success": true,
+		},
+	}
+
+	ctx.HTML(http.StatusOK, "about.html", resData)
 }

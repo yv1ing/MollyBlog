@@ -156,3 +156,35 @@ func (ma *MApp) parseMarkdowns() error {
 	model.SortPostsByDate(ma.Posts)
 	return nil
 }
+
+func (ma *MApp) parseSingleMarkdown(src, dst string) error {
+	// read markdown file
+	_mdFile, err := os.Open(src)
+	if err != nil {
+		return err
+	}
+	defer _mdFile.Close()
+
+	_mdByte, err := io.ReadAll(_mdFile)
+	if err != nil {
+		return err
+	}
+
+	// convert into html format and save to html file
+	_htmlFile, err := os.Create(dst)
+	if err != nil {
+		return err
+	}
+	defer _htmlFile.Close()
+
+	// set options to lute
+	ma.lute.SetToC(true)
+
+	_htmlByte := ma.lute.Markdown(src, _mdByte)
+	_, err = _htmlFile.Write(_htmlByte)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
