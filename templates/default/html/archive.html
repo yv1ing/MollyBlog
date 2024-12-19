@@ -4,30 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .site_info.title }}</title>
+    <title>{{ .site_info.title }} | {{ .history_post.title }}</title>
     <link rel="icon" type="image/x-icon" href="{{ .site_info.logo }}"/>
     <link rel="stylesheet" href="../assets/css/lib/fontawesome.all.min.css">
     <link rel="stylesheet" href="../assets/css/lib/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/archive.css">
-    <script src="../assets/js/lib/typed.umd.js"></script>
     <script src="../assets/js/lib/jquery.min.js"></script>
     <script src="../assets/js/lib/bootstrap.min.js"></script>
     <script src="../assets/js/lib/fontawesome.all.min.js"></script>
 </head>
 <body>
 <div class="root-container">
-    <!-- header -->
-    <div class="container p-3">
-        <div class="row pt-3 pt-md-4 pt-lg-5">
-            <div class="col main-logo">
-                <div class="main-logo-img" style="background-image: url('{{ .site_info.logo }}');"></div>
-                <div class="main-logo-txt">
-                    {{ .site_info.title }}
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="d-block d-md-none" style="height: 30px;"></div>
 
     <!-- menu -->
     <div class="container p-3">
@@ -41,24 +30,24 @@
                 {{ end }}
             </div>
         </div>
-        <div class="row pt-4">
-            <div class="search-wrap">
-                <input class="search-input" id="archive-search-input" type="text">
-                &nbsp;
-                <button class="search-button" onclick="search()">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </div>
-        </div>
     </div>
 
 
     <!-- body -->
     <div class="container p-3">
         <div class="row pt-lg-3">
-            <h4 class="history-post-title"># {{ .history_post.title }}</h4>
-            <div class="col-12 col-lg-9">
-                <div>
+            <h3 class="history-post-title"># {{ .history_post.title }}</h3>
+            <div class="row pt-4">
+                <div class="search-wrap">
+                    <input class="search-input" id="archive-search-input" type="text">
+                    &nbsp;
+                    <button class="search-button" onclick="search()">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row pt-4">
+                <div class="col">
                     {{ range $i, $v := .history_post.posts }}
                     <div class="row history-post-item">
                         <div class="col history-post-item-wrap">
@@ -83,23 +72,6 @@
                     {{ end }}
                 </div>
             </div>
-
-            <!-- special info -->
-            <!-- motto -->
-            <div class="col-lg-3 d-none d-lg-grid carousel slide special-info-area">
-                <div id="archive-motto-container"></div>
-            </div>
-            {{ .site_info.motto_html }}
-            <script>
-                const options = {
-                    strings: motto,
-                    typeSpeed: 30,
-                    startDelay: 100,
-                    showCursor: false,
-                };
-                new Typed("#archive-motto-container", options);
-            </script>
-
         </div>
 
         <div class="row pt-3 pt-lg-4">

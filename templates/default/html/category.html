@@ -16,17 +16,7 @@
 </head>
 <body>
 <div class="root-container">
-    <!-- header -->
-    <div class="container p-3">
-        <div class="row pt-3 pt-md-4 pt-lg-5">
-            <div class="col main-logo">
-                <div class="main-logo-img" style="background-image: url('{{ .site_info.logo }}');"></div>
-                <div class="main-logo-txt">
-                    {{ .site_info.title }}
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="d-block d-md-none" style="height: 30px;"></div>
 
     <!-- menu -->
     <div class="container p-3">
@@ -44,9 +34,9 @@
     <!-- body -->
     <div class="container p-3">
         <div class="row pt-lg-3">
-            <h4 class="categorized-post-title"># {{ .categorized_post.title }}</h4>
-            <div class="col-12">
-                <div>
+            <h3 class="categorized-post-title"># {{ .categorized_post.title }}</h3>
+            <div class="row">
+                <div class="col pt-4">
                     {{ range $i, $v := .categorized_post.posts }}
                     <div class="row categorized-post-item">
                         <div class="col categorized-post-item-wrap">

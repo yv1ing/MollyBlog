@@ -496,3 +496,21 @@ func (ma *MApp) RSSHandler(ctx *gin.Context) {
 		ctx.String(http.StatusNotFound, "RSS Not Found")
 	}
 }
+
+func (ma *MApp) FriendHandler(ctx *gin.Context) {
+	resData := gin.H{
+		"site_info": gin.H{
+			"logo":      ma.Config.MSite.Info.Logo,
+			"title":     ma.Config.MSite.Info.Title,
+			"author":    ma.Config.MSite.Info.Author,
+			"language":  ma.Config.MSite.Info.Language,
+			"copyright": template.HTML(ma.Config.MSite.Info.Copyright),
+		},
+		"menu": ma.Config.MSite.Menu,
+		"friend": gin.H{
+			"title": ma.Config.MSite.Friend.Title,
+			"list":  ma.Config.MSite.Friend.List,
+		},
+	}
+	ctx.HTML(http.StatusOK, "friend.html", resData)
+}

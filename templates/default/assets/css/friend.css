@@ -1,0 +1,43 @@
+.friend-title {
+    color: var(--primary-color);
+}
+
+.friend-item {
+    margin-top: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    color: var(--primary-text-color);
+    border: var(--secondary-text-color) 1px dashed;
+    border-radius: 4px;
+}
+
+.friend-item:hover {
+    cursor: pointer;
+    border: var(--primary-color) 1px solid;
+}
+
+.friend-avatar {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.friend-info-wrap {
+    padding-left: 10px;
+}
+
+.friend-name {
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.friend-description {
+    width: 200px;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--secondary-text-color);
+}
