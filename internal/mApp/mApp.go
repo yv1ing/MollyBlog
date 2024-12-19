@@ -37,11 +37,6 @@ type MApp struct {
 	SrcFiles []model.MFileInfo
 }
 
-var (
-	SRC = config.MConfigInstance.Storage.SRC // source markdown files
-	DST = config.MConfigInstance.Storage.DST // destination html files
-)
-
 func init() {
 	log.SetPrefix("[MollyBlog] ")
 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
@@ -116,16 +111,18 @@ func (ma *MApp) resetStorage() error {
 	}
 
 	var err error
-	err = os.RemoveAll(ma.Config.Storage.SRC)
-	if err != nil {
-		return err
-	}
-
-	_, err = os.Stat(ma.Config.Storage.SRC)
-	if os.IsNotExist(err) {
-		err = os.MkdirAll(ma.Config.Storage.SRC, os.ModePerm)
+	if ma.Config.Storage.AutoPull {
+		err = os.RemoveAll(ma.Config.Storage.SRC)
 		if err != nil {
 			return err
+		}
+
+		_, err = os.Stat(ma.Config.Storage.SRC)
+		if os.IsNotExist(err) {
+			err = os.MkdirAll(ma.Config.Storage.SRC, os.ModePerm)
+			if err != nil {
+				return err
+			}
 		}
 	}
 

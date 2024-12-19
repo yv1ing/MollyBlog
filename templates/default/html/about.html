@@ -1,0 +1,66 @@
+{{ define "about.html" }}
+
+<html lang="{{ .site_info.language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .site_info.title }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ .site_info.logo }}"/>
+    <link rel="stylesheet" href="../assets/css/lib/fontawesome.all.min.css">
+    <link rel="stylesheet" href="../assets/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/lib/xcode-dark.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/about.css">
+    <script src="../assets/js/lib/typed.umd.js"></script>
+    <script src="../assets/js/lib/jquery.min.js"></script>
+    <script src="../assets/js/lib/bootstrap.min.js"></script>
+    <script src="../assets/js/lib/fontawesome.all.min.js"></script>
+</head>
+<body>
+<div class="root-container">
+
+    <!-- body -->
+    <div class="container p-3">
+        <div class="row pt-lg-3">
+            <div class="col-8 mx-auto">
+                <div class="about-title-wrap">
+                    <h3 class="about-title"># {{ .about.title }}</h3>
+                    <div class="row pt-3">
+                        <div class="col-12 col-md-9 mx-auto post-menu">
+                            {{ range $i, $v := .menu.Items }}
+                            <i class="{{ $v.Icon }} m-icon"></i>
+                            <a class="main-menu-link" href="{{ $v.Url }}"> {{ $v.Name }} </a>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+                <div class="about-content-wrap">
+                    <div class="about-content">
+                        {{ .about.content }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- post footer -->
+    {{ if .about.success }}
+    <div class="about-footer">
+        {{ .site_info.copyright }}
+    </div>
+    {{ end }}
+</div>
+
+
+
+<!-- footer -->
+{{ if not .about.success }}
+<div class="footer">
+    {{ .site_info.copyright }}
+</div>
+{{ end }}
+
+</body>
+</html>
+
+{{ end }}

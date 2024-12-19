@@ -1,32 +1,21 @@
 package main
 
 import (
-	"log"
-	"os"
-
 	"MollyBlog/config"
 	"MollyBlog/internal/mApp"
+	"MollyBlog/utils"
 )
 
 func init() {
-	src := config.MConfigInstance.Storage.SRC
-	dst := config.MConfigInstance.Storage.DST
+	postSrc := config.MConfigInstance.Storage.SRC
+	postDst := config.MConfigInstance.Storage.DST
+	utils.Mkdir(postSrc)
+	utils.Mkdir(postDst)
 
-	_, err := os.Stat(src)
-	if os.IsNotExist(err) {
-		err = os.MkdirAll(src, os.ModePerm)
-		if err != nil {
-			log.Fatal(err)
-		}
-	}
-
-	_, err = os.Stat(dst)
-	if os.IsNotExist(err) {
-		err = os.MkdirAll(dst, os.ModePerm)
-		if err != nil {
-			log.Fatal(err)
-		}
-	}
+	aboutSrc := config.MConfigInstance.MSite.About.SRC
+	aboutDst := config.MConfigInstance.MSite.About.DST
+	utils.Mkdir(aboutSrc)
+	utils.Mkdir(aboutDst)
 }
 
 func main() {
