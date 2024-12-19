@@ -22,7 +22,7 @@
     <!-- menu -->
     <div class="container p-3">
         <div class="row pt-lg-3">
-            <div class="col-12 col-md-9 mx-auto post-menu">
+            <div class="col-12 col-lg-8 mx-auto post-menu">
                 {{ range $i, $v := .menu.Items }}
                 <i class="{{ $v.Icon }} m-icon"></i>
                 <a class="main-menu-link" href="{{ $v.Url }}"> {{ $v.Name }} </a>
@@ -32,7 +32,7 @@
     </div>
 
     <!-- toc area -->
-    <div class="d-none d-lg-block" id="toc-box-area">
+    <div class="row d-none d-xl-block" id="toc-box-area">
         <div id="toc-title">
             <h5>{{ .status.toc_title }}</h5>
             <hr/>
@@ -58,7 +58,7 @@
     {{ if .status.success }}
     <div class="container p-3">
         <div class="row pt-lg-3">
-            <div class="col-12 col-md-9 post-info mx-auto">
+            <div class="col-12 col-lg-8 post-info mx-auto">
                 <h2 class="post-title">{{ .post.title }}</h2>
                 <div>
                     <span class="post-info-wrap">
@@ -96,7 +96,7 @@
             </div>
         </div>
         <div class="row pt-5">
-            <div class="col-12 col-md-9 post-content mx-auto" id="post-content">
+            <div class="col-12 col-lg-8 post-content mx-auto" id="post-content">
                 {{ .post.content }}
             </div>
         </div>

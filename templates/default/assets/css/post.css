@@ -81,6 +81,7 @@ tr, th, td {
 }
 
 #toc-box-area {
+    width: 250px;
     position: fixed;
     top: 4rem;
     left: 30px;
@@ -101,6 +102,41 @@ tr, th, td {
     color: var(--primary-color);
 }
 
+#toc-box {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
 #toc-box li {
     list-style: none;
+}
+
+#toc-box .li-1 {
+    font-size: 16px;
+    padding-left: 0;
+}
+
+#toc-box .li-2 {
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+#toc-box .li-3 {
+    font-size: 14px;
+    padding-left: 20px;
+}
+
+#toc-box .li-4 {
+    font-size: 13px;
+    padding-left: 30px;
+}
+
+#toc-box .li-5 {
+    font-size: 12px;
+    padding-left: 40px;
+}
+
+#toc-box .li-6 {
+    font-size: 11px;
+    padding-left: 50px;
 }
