@@ -16,17 +16,7 @@
 </head>
 <body>
 <div class="root-container">
-    <!-- header -->
-    <div class="container p-3">
-        <div class="row pt-3 pt-md-4 pt-lg-5">
-            <div class="col main-logo">
-                <div class="main-logo-img" style="background-image: url('{{ .site_info.logo }}');"></div>
-                <div class="main-logo-txt">
-                    {{ .site_info.title }}
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="d-block d-md-none" style="height: 30px;"></div>
 
     <!-- menu -->
     <div class="container p-3">
@@ -38,24 +28,24 @@
                 {{ end }}
             </div>
         </div>
-        <div class="row pt-4">
-            <div class="search-wrap">
-                <input class="search-input" id="search-search-input" type="text">
-                &nbsp;
-                <button class="search-button" onclick="search()">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </div>
-        </div>
     </div>
 
 
     <!-- body -->
     <div class="container p-3">
         <div class="row pt-lg-3">
-            <h4 class="search-post-title"># {{ .search_post.title }}</h4>
-            <div class="col-12 col-lg-9">
-                <div>
+            <h3 class="search-post-title"># {{ .search_post.title }}</h3>
+            <div class="row pt-4">
+                <div class="search-wrap">
+                    <input class="search-input" id="search-search-input" type="text">
+                    &nbsp;
+                    <button class="search-button" onclick="search()">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row pt-4">
+                <div class="col">
                     {{ range $i, $v := .search_post.posts }}
                     <div class="row search-post-item">
                         <div class="col search-post-item-wrap">

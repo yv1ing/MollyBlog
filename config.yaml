@@ -54,6 +54,9 @@ site:
       - name: Archive
         icon: fa-solid fa-box-archive
         url: /archive
+      - name: Friends
+        icon: fa-solid fa-user-group
+        url: /friend
       - name: About
         icon: fa-solid fa-circle-info
         url: /about
@@ -71,20 +74,29 @@ site:
       number: 10
     archive:
       title: Archive
-      number: 10
+      number: 15
     search:
       title: Search
-      number: 10
+      number: 15
     category:
       title: Category
-      number: 10
+      number: 15
     tag:
       title: Tag
-      number: 10
+      number: 15
 
   # about config
   about:
-    title: About me
+    title: About
     src: _blog/src/about
     dst: _blog/dst/about
     filename: index
+
+  # friends link
+  friend:
+    title: Friends
+    list:
+      - name:
+        link:
+        avatar:
+        description:

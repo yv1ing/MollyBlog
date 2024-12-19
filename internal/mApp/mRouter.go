@@ -7,6 +7,7 @@ func (ma *MApp) loadRoutes() {
 	ma.engine.GET("/rss", ma.RSSHandler)
 	ma.engine.GET("/about", ma.AboutHandler)
 	ma.engine.GET("/search", ma.SearchHandler)
+	ma.engine.GET("/friend", ma.FriendHandler)
 	ma.engine.GET("/archive", ma.ArchiveHandler)
 	ma.engine.GET("/post/:hash", ma.PostHandler)
 	ma.engine.GET("/tag/:hash", ma.TagHandler)

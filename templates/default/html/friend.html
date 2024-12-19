@@ -1,16 +1,16 @@
-{{ define "about.html" }}
+{{ define "friend.html" }}
 
 <html lang="{{ .site_info.language }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .site_info.title }} | {{ .about.title }}</title>
+    <title>{{ .site_info.title }} | {{ .friend.title }}</title>
     <link rel="icon" type="image/x-icon" href="{{ .site_info.logo }}"/>
     <link rel="stylesheet" href="../assets/css/lib/fontawesome.all.min.css">
     <link rel="stylesheet" href="../assets/css/lib/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/lib/xcode-dark.css">
     <link rel="stylesheet" href="../assets/css/global.css">
-    <link rel="stylesheet" href="../assets/css/about.css">
+    <link rel="stylesheet" href="../assets/css/friend.css">
     <script src="../assets/js/lib/typed.umd.js"></script>
     <script src="../assets/js/lib/jquery.min.js"></script>
     <script src="../assets/js/lib/bootstrap.min.js"></script>
@@ -18,11 +18,12 @@
 </head>
 <body>
 <div class="root-container">
+    <div class="d-block d-md-none" style="height: 30px;"></div>
 
     <!-- menu -->
     <div class="container p-3">
         <div class="row pt-lg-3">
-            <div class="col">
+            <div class="col mx-auto">
                 {{ range $i, $v := .menu.Items }}
                 <span class="main-menu-item">
                     <i class="{{ $v.Icon }} m-icon"></i>
@@ -35,33 +36,44 @@
 
     <!-- body -->
     <div class="container p-3">
-        <div class="row pt-lg-3">
+        <div class="row pt-3">
             <div class="col mx-auto">
-                <h3 class="about-title"># {{ .about.title }}</h3>
-                <div class="about-content">
-                    {{ .about.content }}
+                <h3 class="friend-title"># {{ .friend.title }}</h3>
+                <div class="friend-content">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+                        {{ range $i, $v := .friend.list }}
+                        <div class="col">
+                            <div class="friend-item" onclick="goto('{{ $v.Link }}')">
+                                <img class="friend-avatar" src="{{ $v.Avatar }}">
+                                <div class="friend-info-wrap">
+                                    <div class="friend-name">
+                                        {{ $v.Name }}
+                                    </div>
+                                    <div class="friend-description">
+                                        {{ $v.Description }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{ end }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- post footer -->
-    {{ if .about.success }}
-    <div class="about-footer">
-        {{ .site_info.copyright }}
-    </div>
-    {{ end }}
 </div>
 
-
-
 <!-- footer -->
-{{ if not .about.success }}
 <div class="footer">
     {{ .site_info.copyright }}
 </div>
-{{ end }}
 
+<script>
+    function goto(path) {
+        window.location.href = path;
+    }
+</script>
 </body>
 </html>
 

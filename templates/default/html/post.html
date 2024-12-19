@@ -17,10 +17,11 @@
 </head>
 <body>
 <div class="root-container">
+    <div class="d-block d-md-none" style="height: 30px;"></div>
 
     <!-- menu -->
     <div class="container p-3">
-        <div class="row pt-3 pt-md-4 pt-lg-5">
+        <div class="row pt-lg-3">
             <div class="col-12 col-md-9 mx-auto post-menu">
                 {{ range $i, $v := .menu.Items }}
                 <i class="{{ $v.Icon }} m-icon"></i>
