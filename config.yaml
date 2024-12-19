@@ -9,8 +9,8 @@ update_secret: 123456
 
 # configure object storage to automatically obtain article updates
 storage:
-  src: _blog/post/src
-  dst: _blog/post/dst
+  src: _blog/src/post
+  dst: _blog/dst/post
   auto_pull: true
   type: COS
   cos:
@@ -29,7 +29,7 @@ site:
   # basic info
   info:
     logo: /assets/img/logo.png
-    link: https://blog.yvling.cn
+    link: https://yvling.cn
     motto:
       - I hope I can make it out of here.
       - I hope that I can still feel the sun on my face, and hear the sound of the rain.
