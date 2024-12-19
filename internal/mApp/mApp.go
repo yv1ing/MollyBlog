@@ -23,6 +23,8 @@ type MApp struct {
 	engine   *gin.Engine
 	searcher *engine.Engine
 
+	RSS string
+
 	Posts        []*model.MPost
 	IndexedPosts map[uint64]*model.MPost
 

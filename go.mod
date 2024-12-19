@@ -5,6 +5,7 @@ go 1.23
 require (
 	github.com/88250/lute v1.7.6
 	github.com/gin-gonic/gin v1.10.0
+	github.com/gorilla/feeds v1.2.0
 	github.com/huichen/wukong v0.0.0-20210824074240-ecbd39fa0b56
 	github.com/tencentyun/cos-go-sdk-v5 v0.7.59
 	gopkg.in/yaml.v3 v3.0.1

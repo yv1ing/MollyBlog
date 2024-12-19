@@ -9,8 +9,8 @@ update_secret: 123456
 
 # configure object storage to automatically obtain article updates
 storage:
-  src: _blog/src/post
-  dst: _blog/dst/post
+  src: _blog/post/src
+  dst: _blog/post/dst
   auto_pull: true
   type: COS
   cos:
@@ -29,6 +29,7 @@ site:
   # basic info
   info:
     logo: /assets/img/logo.png
+    link: https://blog.yvling.cn
     motto:
       - I hope I can make it out of here.
       - I hope that I can still feel the sun on my face, and hear the sound of the rain.
@@ -39,8 +40,10 @@ site:
       - —— Andy Dufresne
     title: Molly Blog
     author: yvling
+    email: yvling.cn@outlook.com
     language: en
     copyright: Copyright © 2024 Powered by <a href="https://github.com/yv1ing/MollyBlog">MollyBlog</a>
+    description: A simple and easy-to-use blog
 
   # menu config
   menu:
@@ -54,6 +57,9 @@ site:
       - name: About
         icon: fa-solid fa-circle-info
         url: /about
+      - name: RSS
+        icon: fa-solid fa-rss
+        url: /rss
 
   # post config
   post:
