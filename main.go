@@ -20,5 +20,5 @@ func init() {
 
 func main() {
 	mapp := mApp.NewMApp(config.MConfigInstance)
-	mapp.Run()
+	mapp.Run(true)
 }
