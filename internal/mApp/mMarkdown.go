@@ -120,6 +120,7 @@ func (ma *MApp) parseMarkdowns() error {
 			})
 
 			ma.Tags[tagHash] = tag
+			ma.TagsHash[tag] = tagHash
 			ma.TagsCount[tag] += 1
 			ma.TaggedPosts[tagHash] = append(ma.TaggedPosts[tagHash], &post)
 

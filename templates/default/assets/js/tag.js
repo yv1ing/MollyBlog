@@ -1,11 +1,13 @@
 const tagWordCloudCanvas = document.getElementById('tag-word-cloud-canvas');
 
+let wordList = JSON.parse(tagList);
+
 const options = {
-    list: JSON.parse(tagList),
+    list: wordList,
     weightFactor: 20,
     backgroundColor: 'transparent',
     click: (item) => {
-        console.log(item[0], item[1]);
+        window.location.href = "/tag/" + item[2];
     }
 };
 

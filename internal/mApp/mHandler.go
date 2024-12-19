@@ -165,7 +165,7 @@ func (ma *MApp) TagHandler(ctx *gin.Context) {
 		}
 
 		for tag, num := range ma.TagsCount {
-			tagList = append(tagList, []interface{}{tag, num})
+			tagList = append(tagList, []interface{}{tag, num, ma.TagsHash[tag]})
 		}
 	}
 
@@ -198,7 +198,7 @@ func (ma *MApp) TagHandler(ctx *gin.Context) {
 
 func (ma *MApp) CategoryHandler(ctx *gin.Context) {
 	categoryHash := ctx.Param("hash")
-	categoryName := ma.Tags[categoryHash]
+	categoryName := ma.Categories[categoryHash]
 
 	// paging logic processing
 	page, _ := strconv.Atoi(ctx.DefaultQuery("page", "1"))
@@ -235,7 +235,6 @@ func (ma *MApp) CategoryHandler(ctx *gin.Context) {
 	offset := curPage * size
 
 	var categorizedPosts []model.MPost
-	//var tagList [][]interface{}
 	if start >= 0 {
 		for i := start; i < utils.Min(len(ma.CategorizedPosts[categoryHash]), offset); i++ {
 			tmpPost := *ma.CategorizedPosts[categoryHash][i]
@@ -243,12 +242,8 @@ func (ma *MApp) CategoryHandler(ctx *gin.Context) {
 			categorizedPosts = append(categorizedPosts, tmpPost)
 		}
 
-		//for tag, num := range ma.TagsCount {
-		//	tagList = append(tagList, []interface{}{tag, num})
-		//}
 	}
 
-	//tagListJson, _ := json.Marshal(tagList)
 	resData := gin.H{
 		"site_info": gin.H{
 			"logo":      ma.Config.MSite.Info.Logo,
@@ -268,7 +263,6 @@ func (ma *MApp) CategoryHandler(ctx *gin.Context) {
 			"title":         fmt.Sprintf("%s - %s", ma.Config.MSite.Post.Category.Title, categoryName),
 			"posts":         categorizedPosts,
 			"category_hash": categoryHash,
-			//"tag_list":      string(tagListJson),
 		},
 	}
 

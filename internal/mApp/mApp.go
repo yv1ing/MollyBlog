@@ -27,6 +27,7 @@ type MApp struct {
 	IndexedPosts map[uint64]*model.MPost
 
 	Tags             map[string]string
+	TagsHash         map[string]string
 	TagsCount        map[string]int
 	Categories       map[string]string
 	CategoriesCount  map[string]int
@@ -76,6 +77,7 @@ func NewMApp(cfg *config.MConfig) *MApp {
 		IndexedPosts: make(map[uint64]*model.MPost),
 
 		Tags:      make(map[string]string),
+		TagsHash:  make(map[string]string),
 		TagsCount: make(map[string]int),
 
 		Categories:      make(map[string]string),
@@ -93,6 +95,8 @@ func NewMApp(cfg *config.MConfig) *MApp {
 func (ma *MApp) resetStorage() error {
 	ma.Posts = nil
 	ma.Tags = nil
+	ma.TagsHash = nil
+	ma.TagsCount = nil
 	ma.Categories = nil
 	ma.CategoriesCount = nil
 	ma.TaggedPosts = nil
@@ -100,6 +104,7 @@ func (ma *MApp) resetStorage() error {
 	ma.SrcFiles = nil
 
 	ma.Tags = make(map[string]string)
+	ma.TagsHash = make(map[string]string)
 	ma.TagsCount = make(map[string]int)
 	ma.Categories = make(map[string]string)
 	ma.CategoriesCount = make(map[string]int)
