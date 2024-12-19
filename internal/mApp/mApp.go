@@ -46,9 +46,15 @@ func init() {
 	gin.SetMode(gin.ReleaseMode)
 }
 
-func (ma *MApp) Run() {
+func (ma *MApp) Run(debug bool) {
 	ma.loadRoutes()
 	ma.loadTemplates()
+
+	if debug {
+		gin.SetMode(gin.DebugMode)
+	} else {
+		gin.SetMode(gin.ReleaseMode)
+	}
 
 	addr := fmt.Sprintf("%s:%d", ma.Host, ma.Port)
 	log.Printf("app listening on %s\n", addr)
