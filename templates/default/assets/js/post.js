@@ -53,3 +53,23 @@ function backToTop() {
         behavior: 'smooth'
     })
 }
+
+// image preview
+const contentImages = document.querySelectorAll("#post-content img");
+contentImages.forEach((img) => {
+    img.style.cursor = "pointer";
+    img.addEventListener("click", () => {
+        openPreview(img);
+    })
+});
+
+function openPreview(img) {
+    const src = img.getAttribute("src");
+
+    document.getElementById("image-preview-img").setAttribute("src", src);
+    document.getElementById("image-preview-wrap").style.display = "flex";
+}
+
+function closePreview() {
+    document.getElementById("image-preview-wrap").style.display = "none";
+}
