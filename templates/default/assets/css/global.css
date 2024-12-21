@@ -9,12 +9,12 @@
     --background-color: #191c1d;
 }
 
-@font-face {
+/* @font-face {
     font-family: 'miseki-bitmap';
     src: url('../../assets/css/webfonts/miseki-bitmap.ttf') format('opentype');
     font-weight: normal;
     font-style: normal;
-}
+} */
 
 /*@font-face {*/
 /*    font-family: 'meslo-lg-s-regular-for-powerline';*/
@@ -112,7 +112,7 @@ a:hover {
     height: 340px;
     padding: 20px;
     border-radius: 4px;
-    font-family: miseki-bitmap, serif;
+/*     font-family: miseki-bitmap, serif; */
     border: var(--secondary-text-color) 1px dashed;
 }
 
