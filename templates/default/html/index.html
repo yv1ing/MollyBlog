@@ -56,7 +56,7 @@
     <div class="container p-3">
         <div class="row pt-lg-3">
             <h4 class="recent-post-title"># {{ .recent_post.title }}</h4>
-            <div class="col-12 col-lg-9">
+            <div class="col-12 col-xl-9">
                 <div>
                     {{ range $i, $v := .recent_post.posts }}
                     <div class="row recent-post-item">
@@ -85,7 +85,7 @@
 
             <!-- special info -->
             <!-- motto -->
-            <div class="col-lg-3 d-none d-lg-grid carousel slide special-info-area">
+            <div class="col-xl-3 d-none d-xl-grid carousel slide special-info-area">
                 <span id="index-motto-container"></span>
             </div>
             {{ .site_info.motto_html }}

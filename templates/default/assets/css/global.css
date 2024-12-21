@@ -9,19 +9,12 @@
     --background-color: #191c1d;
 }
 
-/* @font-face {
-    font-family: 'miseki-bitmap';
-    src: url('../../assets/css/webfonts/miseki-bitmap.ttf') format('opentype');
+@font-face {
+    font-family: 'fusion-pixel';
+    src: url('../../assets/css/webfonts/fusion-pixel-10px-monospaced-zh_hans.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
-} */
-
-/*@font-face {*/
-/*    font-family: 'meslo-lg-s-regular-for-powerline';*/
-/*    src: url('../../assets/css/webfonts/meslo-lg-s-regular-for-powerline.ttf') format('opentype');*/
-/*    font-weight: normal;*/
-/*    font-style: normal;*/
-/*}*/
+}
 
 html, body {
     width: 100%;
@@ -29,7 +22,6 @@ html, body {
     margin: 0;
     padding: 0;
 
-    /*font-family: meslo-lg-s-regular-for-powerline, serif;*/
     background-color: var(--background-color);
 }
 
@@ -110,9 +102,9 @@ a:hover {
 
 .special-info-area {
     height: 340px;
-    padding: 20px;
+    padding: 15px;
     border-radius: 4px;
-/*     font-family: miseki-bitmap, serif; */
+    font-family: fusion-pixel, serif;
     border: var(--secondary-text-color) 1px dashed;
 }
 
