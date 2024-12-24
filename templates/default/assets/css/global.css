@@ -76,6 +76,10 @@ a:hover {
     color: var(--secondary-text-color);
 }
 
+.icp-text {
+    color: var(--secondary-text-color);
+}
+
 .main-logo {
     display: flex;
 }
