@@ -1,7 +1,6 @@
 package config
 
 type mInfo struct {
-	Logo        string `yaml:"logo"`
 	Link        string `yaml:"link"`
 	Title       string `yaml:"title"`
 	Author      string `yaml:"author"`

@@ -1,12 +1,30 @@
 :root{
-    /* colors */
-    --primary-color: #8589e0;
-    --secondary-color: #b2cbd3;
+    /* dark mode */
+    --dark-primary-color: #c5c6ff;
+    --dark-secondary-color: #898cc8;
 
-    --primary-text-color: #c9cacc;
-    --secondary-text-color: #9c9c9c;
+    --dark-primary-text-color: #e4e1e9;
+    --dark-secondary-text-color: #a3a2ac;
 
-    --background-color: #191c1d;
+    --dark-background-color: #131318;
+
+    /* light mode */
+    --light-primary-color: #6d6faa;
+    --light-secondary-color: #737388;
+
+    --light-primary-text-color: #303036;
+    --light-secondary-text-color: #5f5e67;
+
+    --light-background-color: #fbf8ff;
+
+    /* used color */
+    --primary-color: #0;
+    --secondary-color: #0;
+
+    --primary-text-color: #0;
+    --secondary-text-color: #0;
+
+    --background-color: #0;
 }
 
 @font-face {
@@ -126,7 +144,7 @@ a:hover {
     height: 30px;
     line-height: 30px;
     display: inline;
-    border: none;
+    border: 1px var(--secondary-color) solid;
     border-radius: 4px;
 }
 
@@ -134,11 +152,25 @@ a:hover {
     width: 30px;
     height: 30px;
     display: inline;
-    border: none;
     border-radius: 4px;
-    background: var(--secondary-color);
+    border: 1px var(--secondary-color) solid;
 }
 
 .search-button:hover {
     background: var(--primary-color);
+}
+
+.theme-wrap {
+    width: 36px;
+    height: 36px;
+    position: fixed;
+    right: 30px;
+    bottom: 50px;
+    color: var(--secondary-color);
+    z-index: 999;
+}
+
+.theme-wrap:hover {
+    color: var(--primary-color);
+    cursor: pointer;
 }
