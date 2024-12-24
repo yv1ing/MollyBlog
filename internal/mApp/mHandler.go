@@ -53,6 +53,21 @@ func (ma *MApp) IndexHandler(ctx *gin.Context) {
 		},
 	}
 
+	// statistics
+	var statistics = gin.H{}
+	if ma.Config.MSite.Statistics.Enable {
+		switch ma.Config.MSite.Statistics.Type {
+		case "baidu":
+			statistics["enable"] = true
+			statistics["script"] = template.HTML(ma.Config.MSite.Statistics.Baidu)
+			break
+		default:
+			statistics["enable"] = false
+		}
+	}
+
+	resData["statistics"] = statistics
+
 	ctx.HTML(http.StatusOK, "index.html", resData)
 }
 
@@ -113,6 +128,21 @@ func (ma *MApp) PostHandler(ctx *gin.Context) {
 			"success":   success,
 		},
 	}
+
+	// statistics
+	var statistics = gin.H{}
+	if ma.Config.MSite.Statistics.Enable {
+		switch ma.Config.MSite.Statistics.Type {
+		case "baidu":
+			statistics["enable"] = true
+			statistics["script"] = template.HTML(ma.Config.MSite.Statistics.Baidu)
+			break
+		default:
+			statistics["enable"] = false
+		}
+	}
+
+	resData["statistics"] = statistics
 
 	ctx.HTML(http.StatusOK, "post.html", resData)
 }
@@ -193,6 +223,21 @@ func (ma *MApp) TagHandler(ctx *gin.Context) {
 		},
 	}
 
+	// statistics
+	var statistics = gin.H{}
+	if ma.Config.MSite.Statistics.Enable {
+		switch ma.Config.MSite.Statistics.Type {
+		case "baidu":
+			statistics["enable"] = true
+			statistics["script"] = template.HTML(ma.Config.MSite.Statistics.Baidu)
+			break
+		default:
+			statistics["enable"] = false
+		}
+	}
+
+	resData["statistics"] = statistics
+
 	ctx.HTML(http.StatusOK, "tag.html", resData)
 }
 
@@ -265,6 +310,21 @@ func (ma *MApp) CategoryHandler(ctx *gin.Context) {
 			"category_hash": categoryHash,
 		},
 	}
+
+	// statistics
+	var statistics = gin.H{}
+	if ma.Config.MSite.Statistics.Enable {
+		switch ma.Config.MSite.Statistics.Type {
+		case "baidu":
+			statistics["enable"] = true
+			statistics["script"] = template.HTML(ma.Config.MSite.Statistics.Baidu)
+			break
+		default:
+			statistics["enable"] = false
+		}
+	}
+
+	resData["statistics"] = statistics
 
 	ctx.HTML(http.StatusOK, "category.html", resData)
 }
@@ -342,6 +402,21 @@ func (ma *MApp) ArchiveHandler(ctx *gin.Context) {
 		},
 	}
 
+	// statistics
+	var statistics = gin.H{}
+	if ma.Config.MSite.Statistics.Enable {
+		switch ma.Config.MSite.Statistics.Type {
+		case "baidu":
+			statistics["enable"] = true
+			statistics["script"] = template.HTML(ma.Config.MSite.Statistics.Baidu)
+			break
+		default:
+			statistics["enable"] = false
+		}
+	}
+
+	resData["statistics"] = statistics
+
 	ctx.HTML(http.StatusOK, "archive.html", resData)
 }
 
@@ -417,6 +492,21 @@ func (ma *MApp) SearchHandler(ctx *gin.Context) {
 		},
 	}
 
+	// statistics
+	var statistics = gin.H{}
+	if ma.Config.MSite.Statistics.Enable {
+		switch ma.Config.MSite.Statistics.Type {
+		case "baidu":
+			statistics["enable"] = true
+			statistics["script"] = template.HTML(ma.Config.MSite.Statistics.Baidu)
+			break
+		default:
+			statistics["enable"] = false
+		}
+	}
+
+	resData["statistics"] = statistics
+
 	ctx.HTML(http.StatusOK, "search.html", resData)
 }
 
@@ -486,6 +576,21 @@ func (ma *MApp) AboutHandler(ctx *gin.Context) {
 		},
 	}
 
+	// statistics
+	var statistics = gin.H{}
+	if ma.Config.MSite.Statistics.Enable {
+		switch ma.Config.MSite.Statistics.Type {
+		case "baidu":
+			statistics["enable"] = true
+			statistics["script"] = template.HTML(ma.Config.MSite.Statistics.Baidu)
+			break
+		default:
+			statistics["enable"] = false
+		}
+	}
+
+	resData["statistics"] = statistics
+
 	ctx.HTML(http.StatusOK, "about.html", resData)
 }
 
@@ -512,5 +617,21 @@ func (ma *MApp) FriendHandler(ctx *gin.Context) {
 			"list":  ma.Config.MSite.Friend.List,
 		},
 	}
+
+	// statistics
+	var statistics = gin.H{}
+	if ma.Config.MSite.Statistics.Enable {
+		switch ma.Config.MSite.Statistics.Type {
+		case "baidu":
+			statistics["enable"] = true
+			statistics["script"] = template.HTML(ma.Config.MSite.Statistics.Baidu)
+			break
+		default:
+			statistics["enable"] = false
+		}
+	}
+
+	resData["statistics"] = statistics
+
 	ctx.HTML(http.StatusOK, "friend.html", resData)
 }
