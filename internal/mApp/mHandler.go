@@ -39,7 +39,6 @@ func (ma *MApp) IndexHandler(ctx *gin.Context) {
 	// return some basic information
 	resData := gin.H{
 		"site_info": gin.H{
-			"logo":       ma.Config.MSite.Info.Logo,
 			"title":      ma.Config.MSite.Info.Title,
 			"author":     ma.Config.MSite.Info.Author,
 			"language":   ma.Config.MSite.Info.Language,
@@ -115,7 +114,6 @@ func (ma *MApp) PostHandler(ctx *gin.Context) {
 
 	resData := gin.H{
 		"site_info": gin.H{
-			"logo":      ma.Config.MSite.Info.Logo,
 			"title":     ma.Config.MSite.Info.Title,
 			"author":    ma.Config.MSite.Info.Author,
 			"language":  ma.Config.MSite.Info.Language,
@@ -202,7 +200,6 @@ func (ma *MApp) TagHandler(ctx *gin.Context) {
 	tagListJson, _ := json.Marshal(tagList)
 	resData := gin.H{
 		"site_info": gin.H{
-			"logo":      ma.Config.MSite.Info.Logo,
 			"title":     ma.Config.MSite.Info.Title,
 			"author":    ma.Config.MSite.Info.Author,
 			"language":  ma.Config.MSite.Info.Language,
@@ -291,7 +288,6 @@ func (ma *MApp) CategoryHandler(ctx *gin.Context) {
 
 	resData := gin.H{
 		"site_info": gin.H{
-			"logo":      ma.Config.MSite.Info.Logo,
 			"title":     ma.Config.MSite.Info.Title,
 			"author":    ma.Config.MSite.Info.Author,
 			"language":  ma.Config.MSite.Info.Language,
@@ -382,7 +378,6 @@ func (ma *MApp) ArchiveHandler(ctx *gin.Context) {
 
 	resData := gin.H{
 		"site_info": gin.H{
-			"logo":       ma.Config.MSite.Info.Logo,
 			"title":      ma.Config.MSite.Info.Title,
 			"author":     ma.Config.MSite.Info.Author,
 			"language":   ma.Config.MSite.Info.Language,
@@ -472,7 +467,6 @@ func (ma *MApp) SearchHandler(ctx *gin.Context) {
 
 	resData := gin.H{
 		"site_info": gin.H{
-			"logo":      ma.Config.MSite.Info.Logo,
 			"title":     ma.Config.MSite.Info.Title,
 			"author":    ma.Config.MSite.Info.Author,
 			"language":  ma.Config.MSite.Info.Language,
@@ -562,7 +556,6 @@ func (ma *MApp) AboutHandler(ctx *gin.Context) {
 	// return some basic information
 	resData := gin.H{
 		"site_info": gin.H{
-			"logo":      ma.Config.MSite.Info.Logo,
 			"title":     ma.Config.MSite.Info.Title,
 			"author":    ma.Config.MSite.Info.Author,
 			"language":  ma.Config.MSite.Info.Language,
@@ -605,7 +598,6 @@ func (ma *MApp) RSSHandler(ctx *gin.Context) {
 func (ma *MApp) FriendHandler(ctx *gin.Context) {
 	resData := gin.H{
 		"site_info": gin.H{
-			"logo":      ma.Config.MSite.Info.Logo,
 			"title":     ma.Config.MSite.Info.Title,
 			"author":    ma.Config.MSite.Info.Author,
 			"language":  ma.Config.MSite.Info.Language,

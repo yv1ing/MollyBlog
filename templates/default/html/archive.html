@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .site_info.title }} | {{ .history_post.title }}</title>
-    <link rel="icon" type="image/x-icon" href="{{ .site_info.logo }}"/>
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png"/>
     <link rel="stylesheet" href="../assets/css/lib/fontawesome.all.min.css">
     <link rel="stylesheet" href="../assets/css/lib/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/global.css">
@@ -107,6 +107,12 @@
     {{ .site_info.copyright }}
 </div>
 
+<!-- theme -->
+<div class="theme-wrap" onclick="changeTheme()">
+    <i class="fa-solid fa-circle-half-stroke" style="width: 100%; height: 100%"></i>
+</div>
+
+<script src="../assets/js/global.js"></script>
 <script src="../assets/js/archive.js"></script>
 </body>
 </html>
