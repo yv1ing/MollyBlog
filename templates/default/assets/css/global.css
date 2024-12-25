@@ -123,6 +123,16 @@ a:hover {
     color: var(--primary-color);
 }
 
+.main-menu-item {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.main-menu-item i,
+.main-menu-item a {
+    display: inline-block;
+}
+
 .main-menu-link {
     margin-right: 10px;
 }
