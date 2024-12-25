@@ -56,3 +56,8 @@
     text-overflow: ellipsis;
     color: var(--secondary-text-color);
 }
+
+#music-none-block {
+    width: 100%;
+    height: 120px;
+}
