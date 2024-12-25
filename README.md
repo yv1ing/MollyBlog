@@ -61,11 +61,18 @@ bash ./start.sh
 
 # My Blog
 
-![](./docs/assets/molly-screenshot-004.png)
+## Dark mode
 
-![](./docs/assets/molly-screenshot-005.png)
+![](./docs/assets/myblog-dark-01.png)
 
-![](./docs/assets/molly-screenshot-006.png)
+![](./docs/assets/myblog-dark-02.png)
 
-![](./docs/assets/molly-screenshot-007.png)
+![](./docs/assets/myblog-dark-03.png)
 
+## Light Mode
+
+![](./docs/assets/myblog-light-01.png)
+
+![](./docs/assets/myblog-light-02.png)
+
+![](./docs/assets/myblog-light-03.png)
