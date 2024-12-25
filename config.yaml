@@ -101,6 +101,16 @@ site:
         avatar:
         description:
 
+  # my music
+  music:
+    title: Music
+    list:
+      - name:
+        singer:
+        cover:
+        music_url:
+        lyric_url:
+
   statistics:
     enable: false
     type: baidu

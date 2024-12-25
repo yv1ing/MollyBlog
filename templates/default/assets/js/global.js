@@ -30,6 +30,7 @@ function setTheme() {
     root.style.setProperty("--secondary-text-color", `var(--${theme}-secondary-text-color)`);
 
     root.style.setProperty("--background-color", `var(--${theme}-background-color)`);
+    root.style.setProperty("--panel-color", `var(--${theme}-panel-color)`);
 
     const logo = document.querySelector(".main-logo-img")
     if (logo !== null) {

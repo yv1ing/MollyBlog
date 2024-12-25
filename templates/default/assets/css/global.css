@@ -7,6 +7,7 @@
     --dark-secondary-text-color: #a3a2ac;
 
     --dark-background-color: #131318;
+    --dark-panel-color: #1c1b1f;
 
     /* light mode */
     --light-primary-color: #6d6faa;
@@ -16,6 +17,7 @@
     --light-secondary-text-color: #5f5e67;
 
     --light-background-color: #fbf8ff;
+    --light-panel-color: #e2e0f9;
 
     /* used color */
     --primary-color: #0;
@@ -25,6 +27,7 @@
     --secondary-text-color: #0;
 
     --background-color: #0;
+    --panel-color: #0;
 }
 
 @font-face {

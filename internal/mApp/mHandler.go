@@ -627,3 +627,36 @@ func (ma *MApp) FriendHandler(ctx *gin.Context) {
 
 	ctx.HTML(http.StatusOK, "friend.html", resData)
 }
+
+func (ma *MApp) MusicHandler(ctx *gin.Context) {
+	resData := gin.H{
+		"site_info": gin.H{
+			"title":     ma.Config.MSite.Info.Title,
+			"author":    ma.Config.MSite.Info.Author,
+			"language":  ma.Config.MSite.Info.Language,
+			"copyright": template.HTML(ma.Config.MSite.Info.Copyright),
+		},
+		"menu": ma.Config.MSite.Menu,
+		"music": gin.H{
+			"title": ma.Config.MSite.Music.Title,
+			"list":  ma.Config.MSite.Music.List,
+		},
+	}
+
+	// statistics
+	var statistics = gin.H{}
+	if ma.Config.MSite.Statistics.Enable {
+		switch ma.Config.MSite.Statistics.Type {
+		case "baidu":
+			statistics["enable"] = true
+			statistics["script"] = template.HTML(ma.Config.MSite.Statistics.Baidu)
+			break
+		default:
+			statistics["enable"] = false
+		}
+	}
+
+	resData["statistics"] = statistics
+
+	ctx.HTML(http.StatusOK, "music.html", resData)
+}

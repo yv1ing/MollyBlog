@@ -6,6 +6,7 @@ func (ma *MApp) loadRoutes() {
 	ma.engine.GET("/", ma.IndexHandler)
 	ma.engine.GET("/rss", ma.RSSHandler)
 	ma.engine.GET("/about", ma.AboutHandler)
+	ma.engine.GET("/music", ma.MusicHandler)
 	ma.engine.GET("/search", ma.SearchHandler)
 	ma.engine.GET("/friend", ma.FriendHandler)
 	ma.engine.GET("/archive", ma.ArchiveHandler)
