@@ -40,11 +40,11 @@ function setTheme() {
 function replaceCssFile() {
     let oldHref, newHref;
     if (theme === "dark") {
-        oldHref = "xcode-light.css";
-        newHref = "xcode-dark.css";
+        oldHref = "github-light.css";
+        newHref = "github-dark.css";
     } else {
-        oldHref = "xcode-dark.css";
-        newHref = "xcode-light.css";
+        oldHref = "github-dark.css";
+        newHref = "github-light.css";
     }
 
     const links = document.querySelectorAll('link[rel="stylesheet"]');
