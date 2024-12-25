@@ -164,9 +164,8 @@ a:hover {
     width: 36px;
     height: 36px;
     position: fixed;
+    top: 0;
     right: 30px;
-    bottom: 50px;
-    color: var(--secondary-color);
     z-index: 999;
 }
 
