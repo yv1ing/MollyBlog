@@ -28,25 +28,6 @@ Array.from(tList, v => {
     });
 });
 
-const tocMenu = document.getElementById('toc-box-menu');
-
-window.addEventListener('scroll', (event) => {
-    const scrollFromTop = window.scrollY || document.documentElement.scrollTop;
-    if (scrollFromTop >= 100) {
-        tocMenu.style.display = 'block';
-    } else {
-        tocMenu.style.display = 'none';
-    }
-})
-
-function goto(path) {
-    window.location.href = path;
-}
-
-function back() {
-    window.history.back();
-}
-
 function backToTop() {
     window.scrollTo({
         top: 0,
