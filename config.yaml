@@ -57,6 +57,9 @@ site:
       - name: Friends
         icon: fa-solid fa-user-group
         url: /friend
+      - name: Music
+        icon: fa-solid fa-music
+        url: /music
       - name: About
         icon: fa-solid fa-circle-info
         url: /about
