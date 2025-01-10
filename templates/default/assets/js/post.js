@@ -1,31 +1,40 @@
 const tocBox = document.getElementById('toc-box');
-
-const tList = document.getElementById('post-content').querySelectorAll('h1, h2, h3, h4, h5, h6');
+const postContent = document.getElementById('post-content');
+const tList = postContent.querySelectorAll('h1, h2, h3, h4, h5, h6');
 const hList = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'];
+const div = document.createElement('div');
 
-let tmpHtml = `<div>\n`;
-
-Array.from(tList, v => {
-    // get the level number
+tList.forEach(v => {
     const H = hList.indexOf(v.nodeName) + 1 || 1;
-    tmpHtml += `<div class="li li-${H} toc-li"><a id="${v.id}" href="#">${v.textContent}</a></div>\n`;
+    const liDiv = document.createElement('div');
+    liDiv.className = `li li-${H} toc-li`;
+    const a = document.createElement('a');
+    a.id = v.id;
+    a.href = "#";
+    a.textContent = v.textContent;
+    liDiv.appendChild(a);
+    div.appendChild(liDiv);
+    a.addEventListener('click', (event) => {
+        event.preventDefault();
+        window.scrollTo({ top: v.offsetTop - 60, behavior: 'smooth' });
+    });
 });
 
-tmpHtml += `</div>`
-tocBox.innerHTML = tmpHtml;
-
-Array.from(tList, v => {
-    const btn = document.getElementById('toc-box').querySelector(`#${v.id}`);
-    const ele = document.getElementById('post-content').querySelector(`#${v.id}`);
-
-    if (!btn || !ele) {
-        return;
-    }
-
-    btn.addEventListener('click', (event) => {
-        event.preventDefault();
-        window.scrollTo({ top: ele.offsetTop - 60, behavior: 'smooth' });
+tocBox.appendChild(div);
+window.addEventListener('scroll', () => {
+    let currentActive = null;
+    tList.forEach(v => {
+        if (window.scrollY >= v.offsetTop - 100) {
+            currentActive = v;
+        }
     });
+
+    if (currentActive) {
+        tList.forEach(v => {
+            document.getElementById(v.id).parentNode.classList.remove('active');
+        });
+        document.getElementById(currentActive.id).parentNode.classList.add('active');
+    }
 });
 
 function backToTop() {

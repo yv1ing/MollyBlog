@@ -130,6 +130,12 @@ tr, th, td {
     padding-left: 50px;
 }
 
+.active a {
+    color: var(--primary-color);
+    transform: scale(1.2);
+    font-weight: bold;
+}
+
 .image-preview-wrap {
     position: fixed;
     top: 0;
