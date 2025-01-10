@@ -24,7 +24,7 @@ tocBox.appendChild(div);
 window.addEventListener('scroll', () => {
     let currentActive = null;
     tList.forEach(v => {
-        if (window.scrollY >= v.offsetTop - 100) {
+        if (window.scrollY >= v.offsetTop - 120) {
             currentActive = v;
         }
     });
