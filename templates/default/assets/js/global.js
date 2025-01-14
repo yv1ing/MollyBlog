@@ -9,6 +9,12 @@ if (localStorage.getItem("theme") === null) {
 replaceCssFile();
 setTheme();
 
+window.addEventListener('resize', function() {
+    setFooter()
+});
+
+setFooter()
+
 function changeTheme() {
     if (theme === "dark") {
         theme = "light";
@@ -54,5 +60,30 @@ function replaceCssFile() {
             link.href = "../assets/css/lib/" + newHref;
             break;
         }
+    }
+}
+
+function checkSpecialHeight() {
+    let element = document.querySelector('.body-container')
+    if (!element) {
+        return false;
+    }
+    let elementHeight = element.offsetHeight;
+    let viewportHeight = window.innerHeight;
+
+    return elementHeight >= viewportHeight * 0.7;
+}
+
+function setFooter() {
+    try {
+        if (checkSpecialHeight()) {
+            document.querySelector('.footer').style.display = 'none';
+            document.querySelector('.special-footer').style.display = 'block';
+        } else {
+            document.querySelector('.footer').style.display = 'block';
+            document.querySelector('.special-footer').style.display = 'none';
+        }
+    } catch (e) {
+
     }
 }

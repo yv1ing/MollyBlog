@@ -40,7 +40,7 @@
     </div>
 
     <!-- body -->
-    <div class="container p-3">
+    <div class="container p-3 body-container">
         <div class="row pt-lg-3">
             <div class="col mx-auto">
                 <h3 class="friend-title"># {{ .friend.title }}</h3>
@@ -65,6 +65,11 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- footer -->
+    <div class="special-footer">
+        {{ .site_info.copyright }}
     </div>
 
 </div>

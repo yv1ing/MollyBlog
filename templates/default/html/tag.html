@@ -37,7 +37,7 @@
     </div>
 
     <!-- body -->
-    <div class="container p-3">
+    <div class="container p-3 body-container">
         <div class="row pt-lg-3">
             <h3 class="tagged-post-title"># {{ .tagged_post.title }}</h3>
             <div class="row">
@@ -76,6 +76,11 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- footer -->
+    <div class="special-footer">
+        {{ .site_info.copyright }}
     </div>
 </div>
 
