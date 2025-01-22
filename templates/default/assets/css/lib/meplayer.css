@@ -2,11 +2,11 @@
     font-weight: normal;
     font-style: normal;
     font-family: 'fontello';
-    src: url('../../../assets/css/webfonts/fontello.eot?77128880');
-    src: url('../../../assets/css/webfonts/fontello.eot?77128880#iefix') format('embedded-opentype'),
-    url('../../../assets/css/webfonts/fontello.woff?77128880') format('woff'),
-    url('../../../assets/css/webfonts/fontello.ttf?77128880') format('truetype'),
-    url('../../../assets/css/webfonts/fontello.svg?77128880#fontello') format('svg');
+    src: url('../../http://molly-blog.cdn.yvling.cn/assets/css/webfonts/fontello.eot?77128880');
+    src: url('../../http://molly-blog.cdn.yvling.cn/assets/css/webfonts/fontello.eot?77128880#iefix') format('embedded-opentype'),
+    url('../../http://molly-blog.cdn.yvling.cn/assets/css/webfonts/fontello.woff?77128880') format('woff'),
+    url('../../http://molly-blog.cdn.yvling.cn/assets/css/webfonts/fontello.ttf?77128880') format('truetype'),
+    url('../../http://molly-blog.cdn.yvling.cn/assets/css/webfonts/fontello.svg?77128880#fontello') format('svg');
 }
 
 .meplayer-container {
