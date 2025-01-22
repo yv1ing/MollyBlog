@@ -40,7 +40,7 @@ function setTheme() {
 
     const logo = document.querySelector(".main-logo-img")
     if (logo !== null) {
-        logo.style.setProperty("background-image", `url(http://molly-blog.cdn.yvling.cn/assets/img/logo-${theme}-theme.png)`);
+        logo.style.setProperty("background-image", `url(https://molly-blog.cdn.yvling.cn/assets/img/logo-${theme}-theme.png)`);
     }
 }
 
@@ -57,7 +57,7 @@ function replaceCssFile() {
     const links = document.querySelectorAll('link[rel="stylesheet"]');
     for (const link of links) {
         if (link.href.includes(oldHref)) {
-            link.href = "http://molly-blog.cdn.yvling.cn/assets/css/lib/" + newHref;
+            link.href = "https://molly-blog.cdn.yvling.cn/assets/css/lib/" + newHref;
             break;
         }
     }
