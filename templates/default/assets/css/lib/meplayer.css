@@ -2,11 +2,11 @@
     font-weight: normal;
     font-style: normal;
     font-family: 'fontello';
-    src: url('../../https://molly-blog.cdn.yvling.cn/assets/css/webfonts/fontello.eot?77128880');
-    src: url('../../https://molly-blog.cdn.yvling.cn/assets/css/webfonts/fontello.eot?77128880#iefix') format('embedded-opentype'),
-    url('../../https://molly-blog.cdn.yvling.cn/assets/css/webfonts/fontello.woff?77128880') format('woff'),
-    url('../../https://molly-blog.cdn.yvling.cn/assets/css/webfonts/fontello.ttf?77128880') format('truetype'),
-    url('../../https://molly-blog.cdn.yvling.cn/assets/css/webfonts/fontello.svg?77128880#fontello') format('svg');
+    src: url('https://yvling-cdn-1257337367.cos.ap-nanjing.myqcloud.com/MollyBlog/assets/css/webfonts/fontello.eot?77128880');
+    src: url('https://yvling-cdn-1257337367.cos.ap-nanjing.myqcloud.com/MollyBlog/assets/css/webfonts/fontello.eot?77128880#iefix') format('embedded-opentype'),
+    url('https://yvling-cdn-1257337367.cos.ap-nanjing.myqcloud.com/MollyBlog/assets/css/webfonts/fontello.woff?77128880') format('woff'),
+    url('https://yvling-cdn-1257337367.cos.ap-nanjing.myqcloud.com/MollyBlog/assets/css/webfonts/fontello.ttf?77128880') format('truetype'),
+    url('https://yvling-cdn-1257337367.cos.ap-nanjing.myqcloud.com/MollyBlog/assets/css/webfonts/fontello.svg?77128880#fontello') format('svg');
 }
 
 .meplayer-container {

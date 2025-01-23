@@ -131,7 +131,7 @@
 
             var musicConf = options.music, target = selector.$(options.target) || document.querySelector('.meplayer'),
                 theme = options.theme || _constants.THEME_DEFAULT, hasLrc = !!musicConf.lrc,
-                coverSrc = musicConf.cover || '../../https://molly-blog.cdn.yvling.cn/assets/img/music.png', loop = musicConf.loop || false,
+                coverSrc = musicConf.cover || '../../https://yvling-cdn-1257337367.cos.ap-nanjing.myqcloud.com/MollyBlog/assets/img/music.png', loop = musicConf.loop || false,
                 autoplay = options.autoplay,
                 currentThemeClass = theme === _constants.THEME_DEFAULT ? 'meplayer-container' : 'meplayer-container-mini',
                 containerClass = currentThemeClass + ' ' + (hasLrc ? 'meplayer-haslrc' : '') + ' meplayer-isloading';
